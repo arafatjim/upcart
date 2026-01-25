@@ -18,10 +18,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="font-mono antialiased w-11/12 max-w-full mx-auto bg-background text-foreground flex flex-col min-h-screen">
-        <Header />
-        {children}
-        <Footer />
+      <body className="bg-background   text-foreground font-mono min-h-screen flex flex-col justify-center overflow-x-hidden overflow-y-auto">
+        <div className="">
+          <Header />
+          {children}
+          <Footer />
+        </div>
       </body>
     </html>
   );
