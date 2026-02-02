@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="bg-background   text-foreground font-mono min-h-screen flex flex-col justify-center overflow-x-hidden overflow-y-auto">
+      <body className="mx-12 font-mono">
         <div className="">
           <Header />
           {children}

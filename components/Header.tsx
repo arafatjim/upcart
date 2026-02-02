@@ -2,18 +2,23 @@ import React from 'react'
 import Container from './Container'
 import Logo from './Logo'
 import HeaderMenu from './HeaderMenu'
+import SearchBar from './ui/SearchBar'
+import CartIcon from './ui/CartIcon'
+import FavouriteBtn from '@/app/FavouriteBtn'
 
 const Header = () => {
   return (
-    <header className='p-4 bg-[#485460] top-0 text-primary-foreground font-bold w-7xl mx-auto text-lg  mb-4 rounded-bl-sm rounded-br-sm'>
+    <header className='px-1 py-4 bg-[#485460] w-full mx-auto top-0 text-primary-foreground font-bold mb-4 rounded-bl-sm rounded-br-sm'>
       
-      <Container className='flex justify-between w-full h-full  items-center'>
+      <Container className='flex justify-between  h-full  items-center'>
         <Logo />
         {/* nav-center */}
         <HeaderMenu/>
         {/* nav-r */}
-        <div className="other">
-          Other
+        <div className="w-auto md: flex items-center justify-end gap-4">
+          <SearchBar/>
+          <CartIcon/>
+          <FavouriteBtn/>
         </div>
 
       </Container>

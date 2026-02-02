@@ -1,7 +1,9 @@
+import { link } from "fs";
+
 export const headerData = [
-    {title: "Home", link: "/"},
-    {title: "Shop", link: "/shop"},
-    {title: "Blogs", link:  "/blogs"  },
-    {title:"Hot Deals", link: "/hot-deals"},
-    {title: "Contact", link: "/contact"},
+    {title: "Home", href: "/"},
+    {title: "Shop", href: "/shop"},
+    {title: "Blogs", href:  "/blogs"  },
+    {title:"Hot Deals", href: "/hot-deals"},
+    {title: "Contact", href: "/contact"},
 ];
