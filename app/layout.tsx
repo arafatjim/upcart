@@ -18,8 +18,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="mx-12 font-mono">
-        <div className="">
+      <body className="mx-12 font-mono flex flex-col min-h-screen">
+        <div className="grow">
           <Header />
           {children}
           <Footer />
