@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap');
 @import "tailwindcss";
 @import "tailwindcss/utilities";
 @import "tw-animate-css";
@@ -18,6 +18,7 @@
   /* --color-banner: #f7f1e3; */
   --color-banner: #dcdde1;
   --font-mono: 'JetBrains Mono', monospace;
+  --font-archive: 'Archivo Black', sans-serif;
 }
 
 @theme inline {
@@ -139,5 +140,8 @@
   }
   .hoverEffect{
     @apply transition-all duration-300 ease-in-out;
+  }
+  .button{
+    @apply hover:cursor-pointer hover:scale-105 transition-transform duration-200 hover:text-warning/80;
   }
 }

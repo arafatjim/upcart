@@ -5,13 +5,24 @@ import HeaderMenu from './HeaderMenu'
 import SearchBar from './ui/SearchBar'
 import CartIcon from './ui/CartIcon'
 import FavouriteBtn from '@/app/FavouriteBtn'
+import Signin from './ui/Signin'
+import MobileMenu from './ui/MobileMenu'
+import { currentUser } from '@clerk/nextjs/server'
+import { ClerkLoaded, SignedIn, UserButton } from '@clerk/nextjs'
 
-const Header = () => {
+const Header = async() => {
+  const user =await currentUser(); 
+  console.log('current user', user);
   return (
     <header className='px-1 py-4 bg-[#485460] w-full mx-auto top-0 text-primary-foreground font-bold mb-4 rounded-bl-sm rounded-br-sm'>
       
       <Container className='flex justify-between  h-full  items-center'>
-        <Logo />
+        <div className='w-auto flex items-center gap-2 justify-start md:gap-0'>
+          
+          <MobileMenu/>
+          <Logo />
+          
+        </div>
         {/* nav-center */}
         <HeaderMenu/>
         {/* nav-r */}
@@ -19,6 +30,14 @@ const Header = () => {
           <SearchBar/>
           <CartIcon/>
           <FavouriteBtn/>
+          <ClerkLoaded>
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
+            {!user && <Signin/>}
+            
+          </ClerkLoaded>
+          
         </div>
 
       </Container>
