@@ -21,9 +21,11 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
       <body className="mx-4 font-mono flex flex-col min-h-screen">
-        <div className="grow">
+        <div className="flex flex-col grow flex-1 w-full">
           <Header />
-          {children}
+          <main className="flex-1">
+            {children}
+          </main>
           <Footer />
         </div>
       </body>

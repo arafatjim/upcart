@@ -20,7 +20,9 @@ const SideMenu : FC<SideMenuProps> = ({isOpen, onClose}) => {
       
       
         <div className='flex w-auto mx-auto items-center justify-between ml-3 p-4 border-b border-warning'>
-            <Logo/>
+            <button onClick={onClose}>
+                <Logo/>
+            </button>
             <button onClick={onClose}>
                 <X className='h-6 w-6 text-white'/>
             </button>

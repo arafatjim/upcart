@@ -58,7 +58,7 @@ const SocialLinks = ({className,iconClassName,tooltipClassName}:Props) => {
             {item?.icon}
           </a>
             </TooltipTrigger>
-            <TooltipContent className="bg-white text-gray-700 text-sm rounded-md ml-2 p-2">
+            <TooltipContent className="bg-warning text-gray-700 text-sm rounded-md ml-2 p-2">
               {item?.title}
             </TooltipContent>
           </Tooltip>
