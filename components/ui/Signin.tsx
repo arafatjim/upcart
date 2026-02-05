@@ -4,7 +4,7 @@ import React from 'react'
 const Signin = () => {
   return (
     <SignInButton mode="modal">
-      <button className="px-2 py-1 bg-warning text-black rounded-sm cursor-pointer hover:text-white hover:bg-success hoverEffect transition">
+      <button className='p-2  font-semibold  text-white rounded-sm cursor-pointer bg-success hover:text-gray-600 hover:bg-warning hoverEffect transition'>
       Login
     </button>
     

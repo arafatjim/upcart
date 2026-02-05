@@ -1,22 +1,27 @@
 import { cn } from '@/lib/utils'
-import React from 'react'
+import React, { Children } from 'react'
 
 const Title = ({children,className}:{children:React.ReactNode, className?:string}) => {
   return (
-    <div className={cn('text-4xl font-extrabold',className)}>
+    <div className={cn('text-5xl mask-b-from-70%',className)}>
       {children}
     </div>
   )
 }
 
-const subTitle = ({children,className}:{children:React.ReactNode, className?:string}) => {
+const SubTitle = ({children,className}:{children:React.ReactNode, className?:string}) => {
   return (
-    <div className={cn('text-lg font-semibold',className)}>
+    <div className={cn('text-xl font-semibold',className)}>
         {children}
     </div>
   )
 }
 
+const Subtext =({children, className}:{children:React.ReactNode, className?:string})=>{
+      return (
+        <p className={cn("text-sm text-gray-400 p-1 ")}>{children}</p>
+      )
+}
 
 
-export  {Title, subTitle};
+export  {Title, SubTitle,Subtext};

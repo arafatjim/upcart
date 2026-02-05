@@ -9,7 +9,7 @@ import FooterBottom from './FooterBottom'
 const Footer = () => {
   return (
     <footer className='w-full top-0 text-primary-foreground font-bold  mx-auto text-lg  mt-4 rounded-tl-sm rounded-tr-sm '>
-      <Container >
+      <Container  >
         <FooterTop />
 
         {/* footer bottom-left */}

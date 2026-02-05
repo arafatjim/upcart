@@ -12,13 +12,13 @@ const HomeBanner = () => {
       {/* banner left */}
       <div className='flex flex-col gap-6 space-y-5 md:space-y-0 md:gap-8  md:w-3/5'>
         <Title>
-        Grab Upto 50% Off On<br />  
+        <span className='mask-b-from-neutral-800 text-success'>Grab Upto 50% Off On</span><br />  
         
-        Selected Headphone
+        <span className='text-blue-800'>Selected Headphone</span>
       </Title>
       
-        <div >
-            <Link className='p-2 font-semibold bg-warning text-black rounded-sm cursor-pointer hover:text-white hover:bg-success hoverEffect transition' href={'/shop'}>
+        <div className=''>
+            <Link className='p-2  font-semibold  text-white rounded-sm cursor-pointer bg-success hover:text-gray-600 hover:bg-warning hoverEffect transition' href={'/shop'}>
                 Buy Now
             </Link>
         </div>

@@ -36,10 +36,10 @@ const data: ContactIdemData[]=[
 const FooterTop = () => {
   return (
     
-        <div className="grid grid-cols-1 border-y-2 border-gray-300 text-black md:grid-cols-2 lg:grid-cols-4 gap-4 ">
+        <div className="grid grid-cols-1 border-y-2 border-gray-300 text-black md:grid-cols-2 lg:grid-cols-4 gap-4 my-4">
             {
                 data.map((item)=>(
-                    <div key={item?.id} className="flex items-center  space-x-4 cursor-pointer  hover:bg-light  group hoverEffect p-2">
+                    <div key={item?.id} className="flex items-center space-x-4 cursor-pointer  hover:bg-light  group hoverEffect p-2">
                         <div className="p-3 rounded-full hoverEffect">
                             {item?.icon}
                         </div>

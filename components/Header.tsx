@@ -14,31 +14,31 @@ const Header = async() => {
   const user =await currentUser(); 
   console.log('current user', user);
   return (
-    <header className='px-1 py-4 bg-nav_footer w-full mx-auto top-0 text-primary-foreground font-bold mb-4 rounded-bl-sm rounded-br-sm'>
+    <header className='mb-10 px-1 py-4 bg-nav_footer w-full mx-auto top-0 text-primary-foreground font-bold rounded-bl-sm rounded-br-sm z-50'>
       
       <Container className='flex justify-between  h-full  items-center'>
-        <div className='w-auto flex items-center gap-2 justify-start md:gap-0'>
-          
-          <MobileMenu/>
-          <Logo />
-          
-        </div>
-        {/* nav-center */}
-        <HeaderMenu/>
-        {/* nav-r */}
-        <div className="w-auto md: flex items-center justify-end gap-4">
-          <SearchBar/>
-          <CartIcon/>
-          <FavouriteBtn/>
-          <ClerkLoaded>
-            <SignedIn>
-              <UserButton />
-            </SignedIn>
-            {!user && <Signin/>}
-            
-          </ClerkLoaded>
-          
-        </div>
+      <div className='w-auto flex items-center gap-2 justify-start md:gap-0'>
+        
+        <MobileMenu/>
+        <Logo />
+        
+      </div>
+      {/* nav-center */}
+      <HeaderMenu/>
+      {/* nav-r */}
+      <div className="w-auto md: flex items-center justify-end gap-4">
+        <SearchBar/>
+        <CartIcon/>
+        <FavouriteBtn/>
+        <ClerkLoaded>
+        <SignedIn>
+          <UserButton />
+        </SignedIn>
+        {!user && <Signin/>}
+        
+        </ClerkLoaded>
+        
+      </div>
 
       </Container>
     </header>

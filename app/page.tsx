@@ -5,7 +5,7 @@ import React from 'react';
 
 const HomePage = () => {
   return (
-    <Container className='mt-4 bg-banner rounded-lg py-16 px-8'>
+    <Container className='bg-banner rounded-lg py-16 px-8'>
       <HomeBanner />
     </Container>
   )
