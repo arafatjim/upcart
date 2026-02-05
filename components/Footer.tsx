@@ -1,13 +1,21 @@
 import React from 'react'
 import Container from './Container'
 import FooterTop from './ui/FooterTop'
+import Logo from './Logo'
+import SocialLinks from './ui/SocialLinks'
+import FooterBottom from './FooterBottom'
 
 
 const Footer = () => {
   return (
-    <footer className='w-full p-4 top-0 text-primary-foreground font-bold  mx-auto text-lg  mt-4 rounded-tl-sm rounded-tr-sm'>
-      <Container>
+    <footer className='w-full top-0 text-primary-foreground font-bold  mx-auto text-lg  mt-4 rounded-tl-sm rounded-tr-sm '>
+      <Container >
         <FooterTop />
+
+        {/* footer bottom-left */}
+        <div>
+          <FooterBottom/>
+        </div>
       </Container>
     </footer>
   )

@@ -49,7 +49,7 @@ const SocialLinks = ({className,iconClassName,tooltipClassName}:Props) => {
 
   return (
     <TooltipProvider>
-        <div className={cn("flex items-center justify-start space-x-4 p-4",className)}>
+        <div className={cn(" flex items-center justify-start space-x-1 gap-1 md:py-4 md:px-1  ",className)}>
       {
         socialLinks.map((item) => (
           <Tooltip key={item?.id}>
