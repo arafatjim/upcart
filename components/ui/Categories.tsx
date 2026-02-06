@@ -6,8 +6,8 @@ import Link from 'next/link'
 const Categories = () => {
   return (
     <div>
-      <SubTitle>Categories</SubTitle>
-      <div className='grid grid-cols-1 gap-2 text-sm text-gray-400' >
+      <SubTitle className='pb-2'>Categories</SubTitle>
+      <div className='grid grid-cols-1 pb-2 gap-2 text-sm text-gray-400' >
         {
             CategoriesData.map(item => { 
                 return <Link className='hover:text-warning' href={item?.href} key={ item?.id }>{ item.title }</Link> 

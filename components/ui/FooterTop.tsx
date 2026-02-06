@@ -44,7 +44,7 @@ const FooterTop = () => {
                             {item?.icon}
                         </div>
                         <div className='k hoverEffect'>
-                            <h4 className="font-bold text-sm  ">{item?.title}</h4>
+                            <h4 className="font-bold text-sm text-gray-600 ">{item?.title}</h4>
                             <p className="text-gray-400 text-xs ">{item?.subtitle}</p>
                         </div>
                     </div>

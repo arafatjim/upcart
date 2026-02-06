@@ -8,7 +8,7 @@ const MobileMenu = () => {
     const [isSideMenuOpen, setIsSideMenuOpen] =useState(false);
   return (
     <>
-      <button onClick={()=>setIsSideMenuOpen(!isSideMenuOpen)} className="md:hidden cursor-pointer p-2 rounded-md  ">
+      <button onClick={()=>setIsSideMenuOpen(!isSideMenuOpen)} className="md:hidden cursor-pointer p-1 rounded-md  ">
         
         <AlignLeft className="h-6 w-6 text-white"/>
         

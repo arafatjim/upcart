@@ -16,6 +16,7 @@ const Footer = () => {
         <div>
           <FooterBottom/>
         </div>
+        
       </Container>
     </footer>
   )

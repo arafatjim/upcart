@@ -23,8 +23,8 @@ const SideMenu : FC<SideMenuProps> = ({isOpen, onClose}) => {
             <button onClick={onClose}>
                 <Logo/>
             </button>
-            <button onClick={onClose}>
-                <X className='h-6 w-6 text-white'/>
+            <button className='cursor-pointer ' onClick={onClose}>
+                <X className='h-6 w-6 text-white hover:text-blue-700'/>
             </button>
         </div>
 

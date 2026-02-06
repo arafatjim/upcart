@@ -20,8 +20,8 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-      <body className="mx-4 font-mono flex flex-col min-h-screen">
-        <div className="flex flex-col grow flex-1 w-full">
+      <body className="max-w-11/12 mx-auto font-mono flex flex-col min-h-screen">
+        <div className="flex flex-col grow flex-1 justify-between">
           <Header />
           <main className="flex-1">
             {children}

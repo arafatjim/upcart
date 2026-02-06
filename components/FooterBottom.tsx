@@ -6,6 +6,7 @@ import { Subtext, SubTitle } from './ui/Title'
 import Categories from './ui/Categories'
 import { Button } from './ui/button'
 import Link from 'next/link'
+import { Input } from './ui/input'
 const FooterBottom = () => {
   return (
     
@@ -29,19 +30,27 @@ const FooterBottom = () => {
             <SubTitle>Newsletter</SubTitle>
             <Subtext>Subscribe for latest offers and deals</Subtext>
             <form className='py-2 px-0'>
-                <input className='p-2 text-sm border-2 w-full rounded-lg bg-light text-gray-700 border-white' type="email" name="" id="" placeholder='Enter your email here..' />
+                <Input className='p-2 text-sm border-2 w-full rounded-lg bg-light text-gray-700 border-white' type="email" name="" id="" placeholder='Enter your email here..' required />
 
-                <Button className='my-4 px-0 w-full'>
-                    <Link className='p-2 w-full font-semibold  text-white rounded-sm cursor-pointer bg-success hover:text-gray-600 hover:bg-warning hoverEffect transition' href={'/subscribe'}>
+                <Button className='p-2 my-4 w-full font-semibold  text-white rounded-sm cursor-pointer bg-success hover:text-gray-600 hover:bg-warning hoverEffect transition'>
+                    
                         Subscribe Now
-                    </Link>
+                    
                 </Button>
             </form>
         </div>
         
       </div>
 
-      <p className='flex justify-center mx-auto text-black'>Copyright © 2020 - All</p>
+      <div className='flex justify-center p-2 text-center text-sm items-center gap-x-2 mx-auto bg-dark text-white'>
+        
+        ©{new Date().getFullYear()} 
+        <Logo className='text-sm mask-b-from-70%'/>
+        - All
+        rights reserved.
+    </div>
+
+    
       </div>
     
   )

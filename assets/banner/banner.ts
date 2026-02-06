@@ -1,3 +1,3 @@
 import homeBanner from './banner.png';
-
-export  {homeBanner};
+import runLogo from './go-to-work-logo.png';
+export  {homeBanner, runLogo};

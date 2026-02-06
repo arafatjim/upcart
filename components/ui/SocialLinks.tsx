@@ -53,12 +53,12 @@ const SocialLinks = ({className,iconClassName,tooltipClassName}:Props) => {
       {
         socialLinks.map((item) => (
           <Tooltip key={item?.id}>
-            <TooltipTrigger className={cn("hover:scale-110 transition-transform duration-200 p-2 border-2  rounded-full text-gray-400 hover:text-warning",tooltipClassName)}>
-            <a key={item?.id} href={item?.href} target="_blank" rel="noopener noreferrer" className={cn("text-white  hover:text-warning hoverEffect",iconClassName)}>
+            <TooltipTrigger className={cn("hover:scale-110 transition-transform duration-200 p-2 border-2  rounded-full text-gray-400 hover:bg-warning hover:text-white",tooltipClassName)}>
+            <a key={item?.id} href={item?.href} target="_blank" rel="noopener noreferrer" className={cn("text-white   hoverEffect",iconClassName)}>
             {item?.icon}
           </a>
             </TooltipTrigger>
-            <TooltipContent className="bg-warning text-gray-700 text-sm rounded-md ml-2 p-2">
+            <TooltipContent className="bg-warning  text-gray-700 font-semibold text-sm rounded-md ml-2 p-2">
               {item?.title}
             </TooltipContent>
           </Tooltip>
