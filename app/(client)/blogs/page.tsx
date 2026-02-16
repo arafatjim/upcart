@@ -4,6 +4,7 @@ import React from 'react'
 const Blogs = () => {
   return (
     <div className='flex flex-col flex-1 gap-4 p-4 md:p-8 lg:p-16'>
+      <h1>This is blog page</h1>
       <i>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consectetur alias earum reprehenderit est ab omnis quasi consequuntur ex, labore, numquam hic cupiditate delectus sunt quae error minima, fuga velit nesciunt.
       </i>
       <i>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Exercitationem facere quaerat iure quas commodi autem quasi officia, at nam temporibus maiores id, nostrum iste labore omnis sequi illum, ab cumque.</i>
