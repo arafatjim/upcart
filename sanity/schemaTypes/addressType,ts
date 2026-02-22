@@ -49,7 +49,7 @@ export const addressType = defineType({
                 name: 'zip code',
                 invert: false,
             })
-            .custom((zip: string | undefined) => {
+            .custom((zip) => {
                 if(!zip?.match(/^\d{5}(-\d{4})?$/)){
                     return 'Please enter a valid zip code in the format 12345 or 12345-6789.';
                 }
@@ -72,7 +72,7 @@ export const addressType = defineType({
             state:'state',
             isdefault:'default',
         },
-        prepare({title,subtitle,city,state,isdefault}:{title:string,subtitle:string,city:string,state:string,isdefault:boolean}){
+        prepare({title, subtitle, city, state, isdefault}: {title: string; subtitle: string; city: string; state: string; isdefault: boolean}){
             return {
                 title,
                 subtitle:`${subtitle}, ${city}, ${state}${isdefault ? ' (Default)' : ''}`,
