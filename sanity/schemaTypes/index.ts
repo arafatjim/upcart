@@ -5,7 +5,8 @@ import {blogType} from './postType'
 import {authorType} from './authorType'
 import {orderType} from './orderType'
 import {brandType} from './brandType'
-import {productType} from './productType'
+import { defineField, defineType } from "sanity";
+import { productType } from './productType'
 
 
 export const schema: { types: SchemaTypeDefinition[] } = {
