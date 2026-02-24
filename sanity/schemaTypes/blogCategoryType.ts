@@ -1,9 +1,10 @@
 import { defineField, defineType } from "sanity";
 
 export const blogCategoryType = defineType({
-  name: 'blogCategory',
-  title: 'Blog Category',
+    name: 'blogCategory',
+    title: 'Blog Category',
     type: 'document',
+    icon: () => '🏷️',
     fields: [
         defineField({
             name: 'title',

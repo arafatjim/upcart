@@ -1,14 +1,22 @@
 
 import { max } from "date-fns";
-import { Subtitles } from "lucide-react";
+import { icons, Subtitles } from "lucide-react";
 import { defineField, validation } from "sanity";
 
 export const productType = {
     name: 'product',
-    title: 'Product Name',
+    title: 'Product ',
     type: 'document',
+    icons: () => '📦',
     validation: (Rule: any) => Rule.required().max(500),
     fields: [
+        defineField({
+            name: 'name',
+            title: 'Product Name',
+
+            type: 'string',
+            validation: (Rule: any) => Rule.required().max(100),
+        }),
         defineField({
             name: 'Slug',
             type: 'slug',
@@ -89,6 +97,8 @@ export const productType = {
                 list: [
                     {  title:'Gadgets', value:'gadgets'},
                     {  title:'Accessories', value:'accessories'},
+                    {  title:'Mobile Phones', value:'mobile-phones'},
+                    {  title:'Laptops', value:'laptops'},
                     {  title:'Appliances', value:'appliance'},
                     {  title:'Home Appliances', value:'home-appliances'},
                     {  title:'Office Equipment', value:'office-equipment'},
@@ -106,7 +116,7 @@ export const productType = {
             initialValue: false,
             validation: (Rule: any) => Rule.required(),
         }),
-         
+    
     ],
     preview: {
         select: {

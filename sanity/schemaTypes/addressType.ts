@@ -2,8 +2,9 @@ import { defineType,defineField } from 'sanity';
 
 export const addressType = defineType({
     name: 'address',
-    title: 'Address Name',
-    type: 'object',
+    title: 'Address Details',
+    type: 'document',
+    icon: () => '🏠',
     fields: [
         defineField({
             name: 'name',
@@ -80,3 +81,6 @@ export const addressType = defineType({
         },
     },
 });
+   
+
+

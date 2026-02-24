@@ -5,7 +5,7 @@ export const blogType = defineType({
   name: 'post',
   title: 'Post',
   type: 'document',
-  icon: DocumentTextIcon,
+  icon: () => '📝',
   fields: [
     defineField({
       name: 'title',
