@@ -16,6 +16,7 @@ export const brandType = defineType({
     preview: {
         select: {
             title: 'name',
+            media: 'logo',
         },
     },
 });

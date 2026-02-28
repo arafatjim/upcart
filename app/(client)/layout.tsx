@@ -5,6 +5,7 @@ import "../globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { ClerkProvider } from '@clerk/nextjs'
+import ProductGrid from "@/components/ui/ProductGrid";
 
 
 export const metadata: Metadata = {
@@ -25,6 +26,7 @@ export default function RootLayout({
           <main className="flex-1">
             {children}
           </main>
+          <ProductGrid />
           <Footer />
         </div>
       

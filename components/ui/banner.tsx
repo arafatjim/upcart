@@ -1,5 +1,4 @@
 import { homeBanner, runLogo } from '@/assets/banner/banner'
-import { Button } from '@/components/ui/button'
 import { Title } from '@/components/ui/Title'
 import Link from 'next/link'
 import Image from 'next/image'

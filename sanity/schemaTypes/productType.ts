@@ -13,7 +13,6 @@ export const productType = {
         defineField({
             name: 'name',
             title: 'Product Name',
-
             type: 'string',
             validation: (Rule: any) => Rule.required().max(100),
         }),
@@ -36,7 +35,7 @@ export const productType = {
         defineField({
             name: 'description',
             title: 'Description',
-            type: 'string',
+            type: 'text',
             validation: (Rule: any) => Rule.required().max(500),
         }),
         defineField({
@@ -90,8 +89,8 @@ export const productType = {
             validation: (Rule: any) => Rule.required(),
         }),
         defineField({
-            name:'variant',
-            title: 'Variant',
+            name:'productType',
+            title: 'Product Type',
             type: 'string',
             options: {
                 list: [

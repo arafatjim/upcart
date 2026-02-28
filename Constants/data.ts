@@ -1,5 +1,3 @@
-
-
 export const headerData = [
     {id:1,title: "Home", href: "/"},
     {id:2,title: "Shop", href: "/shop"},
@@ -30,4 +28,13 @@ export const CategoriesData =[
     {id:10, title:'Computer Accessories', href:'/computer-accessories'},
     {id:11, title:'Printers & Copiers', href:'/printers-and-copiers'},
     {id:12, title:'Networking Devices', href:'/networking-devices'}
+];
+
+export const productType = [
+    {id:1, title:'Gadgets', value:'gadgets'},
+    {id:2, title:'Accessories', value:'accessories'},
+    {id:3, title:'Appliences', value:'appliance'},
+    {id:4, title: 'Others', value: 'others'},
+   
+
 ]
