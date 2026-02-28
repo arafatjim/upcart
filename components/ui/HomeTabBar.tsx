@@ -10,7 +10,7 @@ interface Props{
 
 const HomeTabBar = ({selectedTab, onTabSelect}: Props) => {
   return (
-    <div className='flex justify-between items-center py-4 gap-5'>
+    <div className='flex justify-between items-center py-4 gap-5 text-sm'>
       {/* left Tab-bar */}
       <div className='flex gap-6 font-semibold flex-wrap '>
         {productType?.map((item)=>(
