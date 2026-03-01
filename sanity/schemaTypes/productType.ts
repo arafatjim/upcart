@@ -7,131 +7,203 @@ export const productType = {
     name: 'product',
     title: 'Product ',
     type: 'document',
-    icons: () => '📦',
-    validation: (Rule: any) => Rule.required().max(500),
+    validation: (Rule: any) => Rule.required(),
     fields: [
         defineField({
             name: 'name',
             title: 'Product Name',
             type: 'string',
-            validation: (Rule: any) => Rule.required().max(100),
+            validation: (Rule) => Rule.required().max(100),
         }),
         defineField({
-            name: 'Slug',
+            name: 'slug',
+            title: 'Slug',
             type: 'slug',
             options: {
                 source: 'name',
-                maxLength: 100,
+                maxLength: 96,
             },
-            validation: (Rule: any) => Rule.required(),
+            validation: (Rule) => Rule.required(),
+        }),
+        defineField({
+            name:'specifications',
+            title:'Specifications',
+            type:'array',
+            of:[{
+                type:'object',
+                fields:[
+                    defineField({
+                        name:'key',
+                        title:'Key',
+                        type:'string',
+                        validation:(Rule) => Rule.required(),
+                    }),
+                    defineField({
+                        name:'value',
+                        title:'Value',
+                        type:'string',
+                        validation:(Rule) => Rule.required(),
+                    }),
+                ],
+            }],
+        }),
+
+        defineField({
+            name: 'description',
+            title: 'Description',
+            type: 'text',
+            validation: (Rule) => Rule.required().max(50000),
+        }),
+        defineField({
+            name: 'price',
+            title: 'Price',
+            type: 'number',
+            validation: (Rule) => Rule.required().positive(),
+        }),
+        defineField({
+            name: 'productType',
+            title: 'Product Type',
+            type: 'string',
+            options: {
+                list: [
+                    { title: 'Gadget', value: 'gadget' },
+                    {title: 'Accessory', value: 'accessory' },
+                    { title: 'Home Appliance', value: 'home_appliance' },
+                    { title: 'Electronics', value: 'electronics' },
+                    { title: 'Footwear', value: 'footwear' },
+                    { title: 'Clothing', value: 'clothing' },
+                    { title: 'Books', value: 'books' },
+                    { title: 'Toys', value: 'toys' },
+                    { title: 'Sports Equipment', value: 'sports_equipment' },
+                    { title: 'Beauty Products', value: 'beauty_products' },
+                    { title: 'Health Products', value: 'health_products' },
+                    { title: 'Automotive', value: 'automotive' },
+                    { title: 'Other', value: 'other' },
+                ],
+            },
+            validation: (Rule) => Rule.required(),
         }),
         defineField({
             name: 'image',
             title: 'Product Image',
             type: 'array',
             of: [{ type: 'image', options: { hotspot: true } }],
-            validation: (Rule: any) => Rule.required(),
+            validation: (Rule) => Rule.required().min(1).max(5),
         }),
         defineField({
-            name: 'description',
-            title: 'Description',
-            type: 'text',
-            validation: (Rule: any) => Rule.required().max(500),
+            name: 'category',
+            title: 'Category',
+            type: 'reference',
+            to: [{ type: 'category' }],
+            validation: (Rule) => Rule.required(),
         }),
-        defineField({
-            name: 'price',
-            title: 'Price',
-            type: 'number',
-            validation: (Rule: any) => Rule.required().positive(),
-        }),
+       defineField({
+        name: 'brand',
+        title: 'Brand',
+        type: 'reference',
+        to: [{ type: 'brand' }],
+        validation: (Rule) => Rule.required(),
+         }),
+        //  defineField({
+        //     name: 'releaseDate',
+        //     title: 'Release Date',
+        //     type: 'date',
+        //     validation: (Rule) => Rule.required().max(new Date().toISOString().split('T')[0]),
+        // }),
         defineField({
             name: 'discount',
-            title: 'Discount (%)',
+            title: 'Discount Percentage',
             type: 'number',
-            validation: (Rule: any) => Rule.min(0).max(100),
+            validation: (Rule) => Rule.min(0).max(100),
         }),
-        defineField({
-            name: 'categories',
-            title: 'Categories',
-            type: 'array',
-            of: [{ type: 'reference', to: { type: 'category' } }],
-            validation: (Rule: any) => Rule.required().min(1),
-        }),
-        defineField({
-            name: 'brand',
-            title: 'Brand',
-            type: 'reference',
-            to: { type: 'brand' }
-        }),
-        defineField({
+         defineField({
             name: 'stock',
             title: 'Stock Quantity',
             type: 'number',
-            validation: (Rule: any) => Rule.required().integer().min(0), 
+            validation: (Rule) => Rule.required().integer().min(0),
         }),
         defineField({
             name: 'status',
             title: 'Status',
             type: 'string',
-            options: {  
-                list: [
-                    { title: 'In Stock', value: 'in_stock' },
-                    { title: 'Out of Stock', value: 'out_of_stock' },
-                    { title: 'Discontinued', value: 'discontinued' },
-                    { title: 'Pre-order', value: 'pre_order' },
-                    { title: 'New', value: 'new' },
-                    {title: 'Hot-Deal', value: 'hot_deal'},
-                    { title: 'Limited Edition', value: 'limited_edition' },
-                    { title: 'Best Seller', value: 'best_seller' },
-                    {title: 'Sale', value: 'sale'},
-                ],
-            },
-            validation: (Rule: any) => Rule.required(),
-        }),
-        defineField({
-            name:'productType',
-            title: 'Product Type',
-            type: 'string',
             options: {
                 list: [
-                    {  title:'Gadgets', value:'gadgets'},
-                    {  title:'Accessories', value:'accessories'},
-                    {  title:'Mobile Phones', value:'mobile-phones'},
-                    {  title:'Laptops', value:'laptops'},
-                    {  title:'Appliances', value:'appliance'},
-                    {  title:'Home Appliances', value:'home-appliances'},
-                    {  title:'Office Equipment', value:'office-equipment'},
-                    {  title:'Computer Accessories', value:'computer-accessories'},
-                    {  title:'Printers & Copiers', value:'printers-and-copiers'},
-                    {  title:'Networking Devices', value:'networking-devices'},
+                    { title: 'Available', value: 'available' },
+                    { title: 'Out of Stock', value: 'out_of_stock' },
+                    { title: 'Pre-order', value: 'pre_order' },
+                    { title: 'Discontinued', value: 'discontinued' },
+                    {title: 'Limited Edition', value: 'limited_edition' },
+                    {title:'Hot Deal', value:'hot_deal'},
+                    {title:'Best Seller', value:'best_seller'},
+                    { title: 'Discontinued', value: 'discontinued' },
+
                 ],
             },
+            validation: (Rule) => Rule.required(),
         }),
+            defineField({
+            name: 'rating',
+            title: 'Rating',
+            type: 'number',
+            validation: (Rule) => Rule.required().min(0).max(5),
+        }),
+        // defineField({
+        //     name: 'reviews',
+        //     title: 'Reviews',   
+        //     type: 'array',
+        //     of: [{
+        //         type: 'object',
+        //         fields: [
+        //             defineField({
+        //                 name: 'reviewer',
+        //                 title: 'Reviewer Name',
+        //                 type: 'string',
+        //                 validation: (Rule) => Rule.required(),
+        //             }),
+        //             defineField({
+        //                 name: 'comment',
+        //                 title: 'Comment',
+        //                 type: 'text',
+        //                 validation: (Rule) => Rule.required(),
+        //             }),
+        //             defineField({
+        //                 name: 'rating',
+        //                 title: 'Rating',
+        //                 type: 'number',
+        //                 validation: (Rule) => Rule.required().min(0).max(5),
+        //             }),
+        //         ],
+        //     }],
+        // }),
         defineField({
-            name: 'isFeatured',
-            title: 'Featured Product',
+            name: 'featured',
             type: 'boolean',
-            description: 'Mark as featured to highlight this product on the homepage.',
             initialValue: false,
-            validation: (Rule: any) => Rule.required(),
         }),
+        
     
     ],
     preview: {
-        select: {
-            title: 'name',
-            media: 'image', 
-            Subtitle: 'price',
-        },
-        prepare(selection: { title: string; media: any[]; Subtitle: number }) {
-            const { title, media, Subtitle } = selection;
-            const Image = media && media[0] ? media[0].asset : null;
-            return {
-                title: title,
-                Subtitle: `$${Subtitle}`,
-                media: Image,
 
-            };
-        }
+ select: {
+
+ title: 'name',
+
+ media: 'image',
+
+ Subtitle: 'price',
+
+},
+
+ prepare(selection: { title: string; media: any[]; Subtitle: number }) {
+
+    const { title, media, Subtitle } = selection;
+    return {
+        title,
+        media: media && media[0] ? media[0] : undefined,
+        subtitle: Subtitle ? `TK ${Subtitle.toFixed(2)}` : 'No price',
+    };
+    },
     },
 };
+    

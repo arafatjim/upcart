@@ -22,7 +22,6 @@ export const CategoriesData =[
     {id:4, title:'Camera', href:'/camera'},
     {id:5, title:'Accessories', href:'/accessories'},
     {id:6, title:'Gadgets', href:'/gadgets'},
-    {id:7, title:'Appliences', href:'/appliance'},
     {id:8, title:'Home Appliances', href:'/home-appliances'},
     {id:9, title:'Office Equipment', href:'/office-equipment'},
     {id:10, title:'Computer Accessories', href:'/computer-accessories'},
@@ -34,7 +33,8 @@ export const productType = [
     {id:1, title:'Gadgets', value:'gadgets'},
     {id:2, title:'Accessories', value:'accessories'},
     {id:3, title:'Appliences', value:'appliance'},
-    {id:4, title: 'Others', value: 'others'},
+    {id:4, title:'Electronics', value:'electronics'},
+    {id:5, title: 'Others', value: 'others'},
    
 
 ]
