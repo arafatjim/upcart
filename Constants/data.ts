@@ -30,11 +30,11 @@ export const CategoriesData =[
 ];
 
 export const productType = [
-    {id:1, title:'Gadgets', value:'gadgets'},
-    {id:2, title:'Accessories', value:'accessories'},
-    {id:3, title:'Appliences', value:'appliance'},
-    {id:4, title:'Electronics', value:'electronics'},
-    {id:5, title: 'Others', value: 'others'},
+    {id:1, title:'Gadgets', value:"gadget"},
+    {id:2, title:'Accessories', value:"accessory"},
+    {id:3, title:'Home Appliances', value:"home_appliance"},
+    {id:4, title:'Electronics', value:"electronics"},
+    {id:5, title: 'Others', value: "other"},
    
 
 ]

@@ -13,7 +13,9 @@ const HomeBanner = () => {
       {/* banner left */}
       <div className='flex flex-col gap-6 space-y-5 md:space-y-0 md:gap-2 md:w-3/5'>
         <Title>
-        <span className='mask-b-from-neutral-800 text-success'>Grab Upto <span className='text-6xl font-extrabold text-blue-900'>50%</span> Off On</span><br />  
+        <span className='mask-b-from-neutral-800 text-[#000000]'>Grab Upto <span className="text-6xl font-extrabold text-[#00c02a] inline-block animate-out-in">
+  50%
+</span> Off On</span><br />  
         
         <span className='text-blue-800'>Selected Headphone</span>
       </Title>

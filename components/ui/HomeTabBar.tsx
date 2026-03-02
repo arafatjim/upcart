@@ -13,9 +13,20 @@ const HomeTabBar = ({selectedTab, onTabSelect}: Props) => {
     <div className='flex justify-between items-center py-4 gap-5 text-sm'>
       {/* left Tab-bar */}
       <div className='flex gap-6 font-semibold flex-wrap '>
-        {productType?.map((item)=>(
+        {/* {productType?.map((item)=>(
         <button onClick={()=> onTabSelect?.(item?.title)} key={item?.title} className={`border px-2 py-1.5 rounded-2xl bg-green-200/50 border-gray-400 cursor-pointer md:px-6 md:py-2  hover:bg-success hover:text-white transition-colors duration-300 ${selectedTab === item?.title ? 'bg-success text-white' : ''}`} >{item?.title}</button>
-      ))}
+      ))} */}
+      {productType?.map((item) => (
+  <button
+    key={item?.value}
+    onClick={() => onTabSelect?.(item?.value)}
+    className={`border px-2 py-1.5 rounded-2xl bg-green-200/50 border-gray-400 cursor-pointer md:px-6 md:py-2 hover:bg-success hover:text-white transition-colors duration-300 ${
+      selectedTab === item?.value ? "bg-success text-white" : ""
+    }`}
+  >
+    {item?.title}
+  </button>
+))}
       </div>
       
         {/* right Tab-bar */}
