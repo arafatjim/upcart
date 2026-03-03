@@ -1,13 +1,11 @@
-
 import { max } from "date-fns";
 import { icons, Subtitles } from "lucide-react";
 import { defineField, validation } from "sanity";
-
 export const productType = {
     name: 'product',
     title: 'Product ',
     type: 'document',
-    validation: (Rule: any) => Rule.required(),
+    validation: (Rule: any) => Rule.required(),   
     fields: [
         defineField({
             name: 'name',
@@ -47,7 +45,6 @@ export const productType = {
                 ],
             }],
         }),
-
         defineField({
             name: 'description',
             title: 'Description',
@@ -180,19 +177,12 @@ export const productType = {
             type: 'boolean',
             initialValue: false,
         }),
-        
-    
     ],
     preview: {
-
- select: {
-
- title: 'name',
-
- media: 'image',
-
- Subtitle: 'price',
-
+        select: {
+        title: 'name',
+        media: 'image',
+        Subtitle: 'price',
 },
 
  prepare(selection: { title: string; media: any[]; Subtitle: number }) {
