@@ -24,7 +24,7 @@ const ProductGrid = () => {
     setLoading(true);
     try {
       const response = await client.fetch(query, {
-        variant, // dynamic value (gadget, accessory etc.)
+        variant:selectedTab // dynamic value (gadget, accessory etc.)
       });
 
       console.log("Product response:", response);
@@ -53,19 +53,19 @@ const ProductGrid = () => {
       <div className="grid grid-cols-2 gap-4 py-3  md:grid-cols-3 lg:grid-cols-4">
         {!loading &&
         products.map((product) => (
-          <div key={product._id} className="border p-2 bg-secondary rounded-md hover:border-gray-500 transition-colors duration-300 hover:shadow-lg hover:cursor-pointer">
+          <div key={product._id} className="border  p-2 bg-secondary rounded-md hover:border-gray-500 transition-colors duration-300 hover:shadow-lg hover:cursor-pointer hover:scale-095 hover:bg-success/10">
             {product.imageUrl && (
               <img
                 src={product.imageUrl}
                 alt={product.name}
-                className="w-full p-0.5 h-48 object-cover mb-2 rounded-md"
+                className="w-full  p-0.5 h-48 object-cover mb-2 rounded-md"
               />
             )}
             <h2>{product.name}</h2>
-            <p>Price: ${product.price}</p>
+            <p>Price: TK {product.price}</p>
             <p>Type: {product.productType}</p>
             <p>Brand:{product.brand || "Unknown"} </p>
-            <p>Discount:{product.discount || 0} %</p>
+            <p>Discount:{product.discount || 0}%</p>
             
           </div>
         ))}

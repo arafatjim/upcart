@@ -3,7 +3,7 @@ import { icons, Subtitles } from "lucide-react";
 import { defineField, validation } from "sanity";
 export const productType = {
     name: 'product',
-    title: 'Product ',
+    title: 'Product Type',
     type: 'document',
     validation: (Rule: any) => Rule.required(),   
     fields: [
@@ -63,9 +63,9 @@ export const productType = {
         type: 'string',
         options: {
             list: [
-            { title: 'Gadgets', value: 'gadgets' },
-            { title: 'Accessory', value: 'accessories' },
-            { title: 'Home Appliance', value: 'home_appliances' },
+            { title: 'Gadgets', value: 'gadget' },
+            { title: 'Accessory', value: 'accessory' },
+            { title: 'Home Appliance', value: 'home_appliance' },
             { title: 'Electronics', value: 'electronics' },
             { title: 'Footwear', value: 'footwear' },
             { title: 'Clothing', value: 'clothing' },
@@ -75,7 +75,7 @@ export const productType = {
             { title: 'Beauty Products', value: 'beauty_products' },
             { title: 'Health Products', value: 'health_products' },
             { title: 'Automotive', value: 'automotive' },
-            { title: 'Other', value: 'others' },
+            { title: 'Others', value: 'other' },
             ],
         },
         validation: (Rule) => Rule.required(),

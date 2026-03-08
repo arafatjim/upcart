@@ -35,6 +35,4 @@ export const productType = [
     {id:3, title:'Home Appliances', value:"home_appliance"},
     {id:4, title:'Electronics', value:"electronics"},
     {id:5, title: 'Others', value: "other"},
-   
-
 ]
