@@ -2,6 +2,10 @@
 import React, { useEffect, useState } from "react";
 import HomeTabBar from "./HomeTabBar";
 import { client } from "@/sanity/lib/client";
+import {AnimatePresence, motion} from "motion/react";
+import { Loader2 } from "lucide-react";
+import NoProductAvailabel from "./NoProductAvailabel";
+import ProductCart from "./ProductCart";
 
 const ProductGrid = () => {
   const [products, setProducts] = useState<any[]>([]);
@@ -15,7 +19,7 @@ const ProductGrid = () => {
   price,
   productType,
   discount,
-  "brand": brand->title,
+  "brand": brand->name,
   "imageUrl": image[0].asset->url
 }
   `;
@@ -46,30 +50,29 @@ const ProductGrid = () => {
     <div className="py-4 px-auto flex flex-col gap-4">
       <HomeTabBar  selectedTab={selectedTab} onTabSelect={setSelectedTab} />
 
-      {loading && <p>Loading...</p>}
-
-      {!loading && products.length === 0 && <p>No products found</p>}
-
-      <div className="grid grid-cols-2 gap-4 py-3  md:grid-cols-3 lg:grid-cols-4">
-        {!loading &&
-        products.map((product) => (
-          <div key={product._id} className="border  p-2 bg-secondary rounded-md hover:border-gray-500 transition-colors duration-300 hover:shadow-lg hover:cursor-pointer hover:scale-095 hover:bg-success/10">
-            {product.imageUrl && (
-              <img
-                src={product.imageUrl}
-                alt={product.name}
-                className="w-full  p-0.5 h-48 object-cover mb-2 rounded-md"
-              />
-            )}
-            <h2>{product.name}</h2>
-            <p>Price: TK {product.price}</p>
-            <p>Type: {product.productType}</p>
-            <p>Brand:{product.brand || "Unknown"} </p>
-            <p>Discount:{product.discount || 0}%</p>
-            
+      
+      {loading ? (
+        <div className="flex flex-col items-center justify-center py-10 min-h-80 gap-4 bg-green-600 w-full mt-10">
+          <div className="space-y-2 flex items-center text-gray-600">
+            <Loader2 className="animate-spin flex mx-auto items-center justify-center w-5 h-6" size={24} />
+            <span>Product is loading</span>
           </div>
-        ))}
-      </div>
+        </div>
+      ): 
+        products?.length ? (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2.5 mt-10">
+          {products?.map ((products) =>(
+            <AnimatePresence key={products?._id}>
+              <motion.div>
+                <ProductCart  />
+              </motion.div>
+            </AnimatePresence>
+          ))}
+          </div>
+        ) : (
+          <NoProductAvailabel selectedTab={selectedTab}/>
+          )
+      }
     </div>
   );
 };
