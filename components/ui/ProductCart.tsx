@@ -1,9 +1,25 @@
+import { Product } from '@/sanity.types'
+import Image from 'next/image'
+import { urlFor } from '@/sanity/lib/image'
 import React from 'react'
 
-const ProductCart = () => {
+const ProductCart = ({product}:{product: Product}) => {
   return (
-    <div>
-      product cart
+    <div className='text-sm border-2 p-0.5 border-dark/20  bg-white rounded-md grid grid-col-1 items-center justify-around w-46 h-60'>
+      <div className='relative group overflow-hidden  mx-auto items-center'>
+        {product.image && product.image[0] && (
+        <Image
+          src={urlFor(product.image[0]).url()}
+          alt={product.name || "product"}
+          width={700}
+          height={600}
+        />
+      )}
+      {product?.status === "available" && (<p className='absolute top-2 left-2'>Sale</p> )}
+      </div>
+      <div className='p-3'>
+        product details
+      </div>
     </div>
   )
 }

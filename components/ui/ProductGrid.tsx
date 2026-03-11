@@ -6,9 +6,10 @@ import {AnimatePresence, motion} from "motion/react";
 import { Loader2 } from "lucide-react";
 import NoProductAvailabel from "./NoProductAvailabel";
 import ProductCart from "./ProductCart";
+import { Product } from "@/sanity.types";
 
 const ProductGrid = () => {
-  const [products, setProducts] = useState<any[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(false);
   const [selectedTab, setSelectedTab] = useState<string>("");
 
@@ -19,8 +20,8 @@ const ProductGrid = () => {
   price,
   productType,
   discount,
-  "brand": brand->name,
-  "imageUrl": image[0].asset->url
+  brand->{name},
+  image
 }
   `;
 
@@ -63,8 +64,8 @@ const ProductGrid = () => {
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2.5 mt-10">
           {products?.map ((products) =>(
             <AnimatePresence key={products?._id}>
-              <motion.div>
-                <ProductCart  />
+              <motion.div layout initial={{opacity: 0.2}} animate={{opacity: 1}} exit={{opacity:0}} >
+                <ProductCart product={products}/>
               </motion.div>
             </AnimatePresence>
           ))}

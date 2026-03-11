@@ -125,6 +125,7 @@ export const productType = {
             type: 'string',
             options: {
                 list: [
+                    {title: 'sale', value: 'sale_product'},
                     { title: 'Available', value: 'available' },
                     { title: 'Out of Stock', value: 'out_of_stock' },
                     { title: 'Pre-order', value: 'pre_order' },
