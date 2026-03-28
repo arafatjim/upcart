@@ -1,4 +1,4 @@
-import { homeBanner, runLogo } from '@/assets/banner/banner'
+import { homeBanner,  } from '@/assets/banner/banner'
 import { Title } from '@/components/ui/Title'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -9,7 +9,7 @@ import { ShoppingCart } from 'lucide-react'
 
 const HomeBanner = () => {
   return (
-    <div className='flex flex-col justify-between items-center px-0 md:px-4 md:py-0 md:flex-row'>
+    <div className='flex flex-col justify-between items-center px-0 md:px-2 md:py-0 md:flex-row'>
       {/* banner left */}
       <div className='flex flex-col gap-6 space-y-5 md:space-y-0 md:gap-2 md:w-3/5'>
         <Title>
@@ -31,8 +31,8 @@ const HomeBanner = () => {
       </div>
       {/* banner right */} 
       
-        <div className='hidden md:inline-flex w-2/5'>
-          <Image  src={homeBanner} alt='banner'  />
+        <div className='hidden md:inline-flex w-70'>
+          <Image className='rounded-full bg-none'  src={homeBanner} alt='banner'  />
         </div>
       
     </div>
