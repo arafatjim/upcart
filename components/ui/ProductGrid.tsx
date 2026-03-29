@@ -20,6 +20,7 @@ const ProductGrid = () => {
   price,
   productType,
   discount,
+  status,
   brand->{name},
   image
 }
