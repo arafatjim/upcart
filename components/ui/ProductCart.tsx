@@ -92,7 +92,7 @@ const ProductCart = ({product}:{product: Product}) => {
               <p className='text-sm font-bold text-success'>Price: {discountedPrice.toFixed(2)}TK</p>
               <div className='flex text-xs items-center gap-1'>
                 <span>Regular Price:</span>
-              <p className=' text-red-500 line-through'> {discount > 0 ? ` ${price.toFixed(2)}TK` : ""}</p>
+              <p className=' text-red-500 line-through'> {discount > 0 ? ` ${price.toFixed(2)}TK` : '' }</p>
               </div>
             
             </div>
@@ -101,7 +101,7 @@ const ProductCart = ({product}:{product: Product}) => {
               {inStock > 0 ? `In Stock: ${inStock}` : "Out of Stock"}
             </p>
             
-          <button className='w-8/12 mx-auto my-2 p-2 bg-success text-white  rounded-2xl flex items-center justify-start gap-2 font-bold hover:bg-warning hover:text-gray-600 disabled:bg-gray-400 disabled:cursor-not-allowed' disabled={inStock === 0}>
+          <button className='w-8/12 mx-auto my-2 px-2 py-1 bg-success text-white  rounded-2xl flex items-center justify-start gap-2 font-bold hover:bg-warning hover:text-gray-600 disabled:bg-gray-400 disabled:cursor-not-allowed' disabled={inStock === 0}>
             <ShoppingBag />
             Add to Cart
           </button>
