@@ -22,7 +22,13 @@ const ProductGrid = () => {
   discount,
   status,
   brand->{name},
-  image
+  image,
+  rating,
+  stock,
+  reviews[]{
+    rating,
+    comment
+  }
 }
   `;
 
@@ -49,7 +55,7 @@ const ProductGrid = () => {
   }, [selectedTab]);
 
   return (
-    <div className="py-4 px-auto flex flex-col gap-4">
+    <div className="py-4 px-auto flex flex-col gap-2">
       <HomeTabBar  selectedTab={selectedTab} onTabSelect={setSelectedTab} />
 
       

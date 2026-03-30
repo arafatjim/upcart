@@ -101,12 +101,12 @@ export const productType = {
         to: [{ type: 'brand' }],
         validation: (Rule) => Rule.required(),
          }),
-        //  defineField({
-        //     name: 'releaseDate',
-        //     title: 'Release Date',
-        //     type: 'date',
-        //     validation: (Rule) => Rule.required().max(new Date().toISOString().split('T')[0]),
-        // }),
+          defineField({
+             name: 'releaseDate',
+             title: 'Release Date',
+             type: 'date',
+             validation: (Rule) => Rule.required().max(new Date().toISOString().split('T')[0]),
+         }),
         defineField({
             name: 'discount',
             title: 'Discount Percentage',
@@ -145,34 +145,34 @@ export const productType = {
             type: 'number',
             validation: (Rule) => Rule.required().min(0).max(5),
         }),
-        // defineField({
-        //     name: 'reviews',
-        //     title: 'Reviews',   
-        //     type: 'array',
-        //     of: [{
-        //         type: 'object',
-        //         fields: [
-        //             defineField({
-        //                 name: 'reviewer',
-        //                 title: 'Reviewer Name',
-        //                 type: 'string',
-        //                 validation: (Rule) => Rule.required(),
-        //             }),
-        //             defineField({
-        //                 name: 'comment',
-        //                 title: 'Comment',
-        //                 type: 'text',
-        //                 validation: (Rule) => Rule.required(),
-        //             }),
-        //             defineField({
-        //                 name: 'rating',
-        //                 title: 'Rating',
-        //                 type: 'number',
-        //                 validation: (Rule) => Rule.required().min(0).max(5),
-        //             }),
-        //         ],
-        //     }],
-        // }),
+         defineField({
+             name: 'reviews',
+             title: 'Reviews',   
+             type: 'array',
+             of: [{
+                 type: 'object',
+                 fields: [
+                     defineField({
+                         name: 'reviewer',
+                         title: 'Reviewer Name',
+                         type: 'string',
+                         validation: (Rule) => Rule.required(),
+                     }),
+                     defineField({
+                         name: 'comment',
+                         title: 'Comment',
+                         type: 'text',
+                         validation: (Rule) => Rule.required(),
+                     }),
+                     defineField({
+                         name: 'rating',
+                         title: 'Rating',
+                         type: 'number',
+                         validation: (Rule) => Rule.required().min(0).max(5),
+                     }),
+                 ],
+             }],
+         }),
         defineField({
             name: 'featured',
             type: 'boolean',
