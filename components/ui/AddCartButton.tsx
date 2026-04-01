@@ -7,7 +7,7 @@ interface Props{
 }
 const AddCartButton = ({ product, className }: Props) => {
     const isOutOfStock =product?.stock === 0;
-    const buttonClass = `${className} ${isOutOfStock ? 'bg-gray-400 cursor-not-allowed' : 'bg-success hover:bg-warning'} flex font-bold items-center text-center justify-center rounded-2xl border-2 border-gray-400 text-nowrap gap-2 text-white text-xs mx-1 p-1 focus:shadow-outline transition duration-150 ease`;
+    const buttonClass = `${className} ${isOutOfStock ? 'w-full bg-gray-400  cursor-not-allowed' : 'bg-success w-full hover:text-gray-600 hover:bg-warning cursor-pointer'} flex font-bold items-center text-center justify-center rounded-md border-2 border-gray-400 text-nowrap gap-2 text-white text-xs mx-1 p-1 focus:shadow-outline transition duration-150 ease`;
   return (
     <div>
         <button className={buttonClass}>

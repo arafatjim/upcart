@@ -126,7 +126,7 @@ const ProductCart = ({product}:{product: Product}) => {
               {inStock > 0 ? `In Stock: ${inStock}` : "Out of Stock"}
             </p>
             
-          <AddCartButton product={product} className='w-36 bg-success hover:bg-warning' />
+          <AddCartButton product={product} className='w-36 mx-auto bg-success hover:bg-warning' />
           </div>
     </div>
   )
