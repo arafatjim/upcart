@@ -13,9 +13,12 @@ import {
   AlertTriangle,
   Sparkles,
   ShoppingBag,
+  StarIcon,
 } from "lucide-react";
 import AddToWishListBtn from './AddToWishListBtn';
 import CartIcon from './CartIcon';
+import { insert } from 'sanity';
+import AddCartButton from './AddCartButton';
 
 const statusConfig: Record<string, { text: string; className: string; icon: React.ElementType }> = {
   sale_product: { text: "Sale", className: "hover:bg-warning hover:text-gray-600", icon : Flame },
@@ -40,71 +43,90 @@ const ProductCart = ({product}:{product: Product}) => {
   const productType = product?.productType || "Unknown Type";
   const totalDiscountAmount = price - discountedPrice;
   return (
-    <div className='flex flex-col bg-light border-2 border-gray-200 rounded-sm gap-2 p-1'>
+    <div className='border-2 border-gray-400 rounded-lg overflow-hidden bg-white shadow-md hover:shadow-lg transition-shadow duration-300'>
       
-      <div className='relative group overflow-hidden h-60 items-center border-2 border-gray-200 flex item-center p-1 rounded-sm justify-center gap-2'>
+      <div className='relative group flex items-center justify-center'>
         
-          <AddToWishListBtn product={product}/>
+          {/* <AddToWishListBtn product={product}/> */}
         
         {config && (
   <Link href={`${product?.status}`}
-    className={`absolute top-1 left-1 flex items-center gap-1 px-1 py-.5 rounded-md text-xs border-2 border-gray-600 text-white bg-success ${config.className}`}
+    className={`absolute flex top-1 left-1 items-center gap-1 px-1 p-1 rounded-full text-xs border-2 border-gray-600 text-white bg-success ${config.className}`}
   >
     {Icon && <Icon size={14} />}
-    {config.text}
+    {/* {config?.text} */}
+    
+
   </Link>
+  
 )}
+    <div>
+      <AddToWishListBtn product={product}/>
+    </div>
         
-        <div className='relative group overflow-hidden bg-light'>
-          {product.image && product.image[0] && (
-        <Image
-          src={urlFor(product.image[0]).url()}
-          alt={product.name || "product"}
-          width={700}
-          height={200}
-          className='{`w-full h-64 object-contain overflow-hidden transition-transform bg-banner hoverEffect group-hover:scale-105`}'
-        />
-        
-      )}
+        <div className='w-full h-48 sm:h-56 md:h-64 overflow-hidden'>
+            {product.image && product.image[0] && (
+            <Image
+              src={urlFor(product.image[0]).url()}
+              alt={product.name || "product"}
+              loading='lazy'
+              width={300}
+              height={300}
+              className='w-full h-full object-cover group-hover:scale-105 transition-transform duration-300'
+            />
+            )}
         </div>
-      <div className='absolute bottom-0.5 left-0 flex  md:right-0 md:flex-row justify-around items-center gap-2 w-full px-2 py-1 backdrop-blur-xs rounded-tl-sm rounded-tr-sm'>
+      <div className='absolute top-1 right-1 flex flex-col items-end gap-1'>
         <p className=' bg-dark text-white  text-xs border-2 border-gray-400 rounded-2xl px-1'>{discount}%OFF</p>
         <p className=' bg-dark text-white  text-xs border-2 border-gray-400 rounded-2xl px-1'>Save:{totalDiscountAmount.toFixed(2)}TK</p>
       </div>
         
       </div>
      
-          <div className='flex flex-col px-0 text-nowrap justify-around gap-1'>
-            <div className='flex items-center gap-2'>
-              Product Type:
-              <p className='text-bold text-gray-400 uppercase text-xs'>
+          <div className='flex flex-col gap-1 px-2 py-1'>
+            <div className='flex items-center gap-2 text-xs font-bold text-gray-400 uppercase'>
+              Type:
+              <p className=''>
                 
               {productType.charAt(0).toUpperCase() + productType.slice(1)}
             </p> 
             
             </div>
+            {/* Review and Rating */}
+            <div className='flex gap-0.5 text-xs'>
+              <div className='flex items-center gap-.5 text-xs'>
+              {
+                [...Array(5)].map((_, index)=>{
+                  const starFilled = index < Math.round(rating);
+                  return <StarIcon key={index} size={12} className={starFilled ? 'text-yellow-600' : 'text-success'} fill={starFilled ? 'currentColor' : '#0dcaf0'} />
+                })
+              }
+              
+            </div>
+            
+            <div className="reviews  font-bold text-gray-400 text-nowrap tracking-wide pl-1">
+               5 reviews
+            </div>
+            </div>
             <h3 className='font-semibold textd-xl text-success text-start'>
               {productName.length > 20 ? `${productName.slice(0, 16)}` : productName}
             </h3>
             <p className='text-xs font-bold text-gray-400'>{rating ? `Rating: ${rating} /5.0` : "Rating: NAN"}</p>
-            <div className='flex flex-col gap-2'>
+            <div className='flex  gap-2'>
 
-              <p className='text-sm font-bold text-success'>Price: {discountedPrice.toFixed(2)}TK</p>
-              <div className='flex text-xs items-center gap-1'>
-                <span>Regular Price:</span>
+              <p className='text-xs font-bold text-success'>{discountedPrice.toFixed(2)}TK</p>
+              <div className='flex text-xs items-center gap-1 font-bold text-gray-400'>
+                
               <p className=' text-red-500 line-through'> {discount > 0 ? ` ${price.toFixed(2)}TK` : '' }</p>
               </div>
             
             </div>
             
-            <p className='text-sm text-gray-400'>
+            <p className={`${inStock > 0 ? 'text-sm font-semibold text-green-600' : 'text-sm font-semibold text-gray-400'}`}>
               {inStock > 0 ? `In Stock: ${inStock}` : "Out of Stock"}
             </p>
             
-          <button className='w-8/12 mx-auto my-2 px-2 py-1 bg-success text-white  rounded-2xl flex items-center justify-start gap-2 font-bold hover:bg-warning hover:text-gray-600 disabled:bg-gray-400 disabled:cursor-not-allowed' disabled={inStock === 0}>
-            <ShoppingBag />
-            Add to Cart
-          </button>
+          <AddCartButton product={product} className='w-36 bg-success hover:bg-warning' />
           </div>
     </div>
   )

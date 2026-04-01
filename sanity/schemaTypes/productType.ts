@@ -3,7 +3,7 @@ import { icons, Subtitles } from "lucide-react";
 import { defineField, validation } from "sanity";
 export const productType = {
     name: 'product',
-    title: 'Product Type',
+    title: 'Products',
     type: 'document',
     validation: (Rule: any) => Rule.required(),   
     fields: [

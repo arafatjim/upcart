@@ -6,8 +6,8 @@ import React from 'react'
 
 const AddToWishListBtn = ({product, className}:{product:Product, className?:string}) => {
   return (
-    <div className={cn('absolute top-1  right-1 z-10', className)}>
-        <Heart className={`p-1 w-5 text-white h-5 rounded-full bg-success hover:bg-warning hover:text-red-500`}>WishList</Heart>
+    <div className={cn('absolute  top-8 left-1 z-10 ', className)}>
+        <Heart className={`w-6 p-1 text-white h-6 border-2 border-gray-400 rounded-full bg-success hover:bg-warning hover:text-red-500`}>WishList</Heart>
     </div>
   )
 }
