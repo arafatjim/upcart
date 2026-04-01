@@ -1,17 +1,18 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import HomeTabBar from "./HomeTabBar";
+import { productType } from '@/Constants/data';
 import { client } from "@/sanity/lib/client";
 import {AnimatePresence, motion} from "motion/react";
 import { Loader2 } from "lucide-react";
-import NoProductAvailabel from "./NoProductAvailabel";
+import NoProductAvailabel from "./NoProductAvailable";
 import ProductCart from "./ProductCart";
 import { Product } from "@/sanity.types";
 
 const ProductGrid = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(false);
-  const [selectedTab, setSelectedTab] = useState<string>("");
+  const [selectedTab, setSelectedTab] = useState<string>(productType[0]?.value || "gadget");
 
   const query = `
   *[_type == "product" && productType == $variant] {

@@ -31,6 +31,7 @@ const HomeTabBar = ({selectedTab, onTabSelect}: Props) => {
       <div className='w-1/5 flex justify-end items-center gap-2'>
         <Link href={'/products'}
     className={`border px-2 py-1.5 rounded-2xl text-nowrap bg-green-200/50 border-gray-400 cursor-pointer md:px-6 md:py-2 hover:bg-warning hover:text-gray-600 transition-colors duration-300`}>View All</Link>
+
       </div>
     </div>
   )

@@ -8,7 +8,7 @@ type Props = {
   className?: string
 }
 
-const NoProductAvailabel = (
+const NoProductAvailable = (
   {   selectedTab, 
     className,
   }: Props
@@ -34,6 +34,7 @@ const NoProductAvailabel = (
       {selectedTab}
     </span>
     {''} criteria at the moment.
+
     </motion.p>
 
     <motion.div
@@ -56,4 +57,4 @@ const NoProductAvailabel = (
   )
 }
 
-export default NoProductAvailabel
+export default NoProductAvailable
