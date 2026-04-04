@@ -12,6 +12,8 @@
  * ---------------------------------------------------------------------------------
  */
 
+export declare const internalGroqTypeReferenceTo: unique symbol;
+
 // Source: schema.json
 export type Address = {
   _id: string;
@@ -26,6 +28,13 @@ export type Address = {
   state?: string;
   zip?: string;
   default?: boolean;
+};
+
+export type ProductReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "product";
 };
 
 export type Order = {
@@ -48,12 +57,7 @@ export type Order = {
   customerEmail?: string;
   stripePaymentIntentId?: string;
   products?: Array<{
-    productId?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "product";
-    };
+    productId?: ProductReference;
     quantity?: number;
     _key: string;
   }>;
@@ -81,6 +85,27 @@ export type Order = {
     | "partially_refunded"
     | "awaiting_payment";
   orderDate?: string;
+};
+
+export type SanityImageAssetReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+};
+
+export type CategoryReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "category";
+};
+
+export type BrandReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "brand";
 };
 
 export type Product = {
@@ -113,33 +138,20 @@ export type Product = {
     | "automotive"
     | "other";
   image?: Array<{
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     _type: "image";
     _key: string;
   }>;
-  category?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "category";
-  };
-  brand?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "brand";
-  };
+  category?: CategoryReference;
+  brand?: BrandReference;
+  releaseDate?: string;
   discount?: number;
   stock?: number;
   status?:
+    | "sale_product"
     | "available"
     | "out_of_stock"
     | "pre_order"
@@ -149,6 +161,12 @@ export type Product = {
     | "best_seller"
     | "discontinued";
   rating?: number;
+  reviews?: Array<{
+    reviewer?: string;
+    comment?: string;
+    rating?: number;
+    _key: string;
+  }>;
   featured?: boolean;
 };
 
@@ -163,12 +181,7 @@ export type Brand = {
   slug?: Slug;
   description?: string;
   logo?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
@@ -198,6 +211,13 @@ export type Slug = {
   source?: string;
 };
 
+export type AuthorReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "author";
+};
+
 export type Post = {
   _id: string;
   _type: "post";
@@ -206,32 +226,20 @@ export type Post = {
   _rev: string;
   title?: string;
   slug?: Slug;
-  author?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "author";
-  };
+  author?: AuthorReference;
   mainImage?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     alt?: string;
     _type: "image";
   };
-  categories?: Array<{
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "category";
-  }>;
+  categories?: Array<
+    {
+      _key: string;
+    } & CategoryReference
+  >;
   publishedAt?: string;
   body?: BlockContent;
 };
@@ -256,12 +264,7 @@ export type BlockContent = Array<
       _key: string;
     }
   | {
-      asset?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-      };
+      asset?: SanityImageAssetReference;
       media?: unknown;
       hotspot?: SanityImageHotspot;
       crop?: SanityImageCrop;
@@ -280,12 +283,7 @@ export type Author = {
   name?: string;
   slug?: Slug;
   image?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
@@ -323,12 +321,7 @@ export type Category = {
   range?: string;
   featured?: boolean;
   image?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
@@ -434,12 +427,17 @@ export type Geopoint = {
 
 export type AllSanitySchemaTypes =
   | Address
+  | ProductReference
   | Order
+  | SanityImageAssetReference
+  | CategoryReference
+  | BrandReference
   | Product
   | Brand
   | SanityImageCrop
   | SanityImageHotspot
   | Slug
+  | AuthorReference
   | Post
   | BlockContent
   | Author
@@ -452,5 +450,3 @@ export type AllSanitySchemaTypes =
   | SanityAssetSourceData
   | SanityImageAsset
   | Geopoint;
-
-export declare const internalGroqTypeReferenceTo: unique symbol;

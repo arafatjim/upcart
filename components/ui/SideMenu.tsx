@@ -16,10 +16,10 @@ const SideMenu : FC<SideMenuProps> = ({isOpen, onClose}) => {
         onClose();
     });
   return (
-    <div ref={sideMenuRef} className={`fixed inset-y-0 h-full top-0 left-0  z-10  w-11/12 text-white/70 bg-black/80 shadow-lg transform ${isOpen ? 'translate-x-0' : '-translate-x-full'} hoverEffect z-50`}>
+    <div ref={sideMenuRef} className={`fixed top-0 left-0 h-full w-[90%] bg-nav_footer z-50 mt-1 transform ${isOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out`}>
       
       
-        <div className='flex w-auto mx-auto items-center justify-between ml-3 p-4 border-b border-warning'>
+        <div className='flex items-center justify-between p-4 border-b border-gray-300'>
             <button onClick={onClose}>
                 <Logo/>
             </button>
@@ -29,7 +29,7 @@ const SideMenu : FC<SideMenuProps> = ({isOpen, onClose}) => {
         </div>
 
         {/* menues */}
-        <div className='ml-3  flex flex-col'>
+        <div className='flex flex-col mt-4'>
             {
                 headerData.map((item)=>(
                     <div key={item?.id} className='px-4 py-2 border-gray-300'>

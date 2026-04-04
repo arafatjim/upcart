@@ -26,7 +26,7 @@ export default function RootLayout({
           <main className="flex-1">
             {children}
           </main>
-          <ProductGrid />
+          {/* <ProductGrid /> */}
           <Footer />
         </div>
       

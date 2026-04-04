@@ -12,12 +12,11 @@ import { ClerkLoaded, SignedIn, UserButton } from '@clerk/nextjs'
 
 const Header = async() => {
   const user =await currentUser(); 
-  console.log('current user', user);
   return (
-    <header className='mb-10 py-4 bg-nav_footer w-full mx-auto top-0 text-primary-foreground font-semibold rounded-bl-sm rounded-br-sm z-50'>
+    <header className='bg-nav_footer shadow-md sticky top-0 z-50 py-4 mb-4 mt-1 text-white text-md'> 
       
-      <Container className='flex justify-between  h-full  items-center'>
-      <div className='w-auto flex items-center gap-0.5 justify-start md:gap-0'>
+      <Container className='flex items-center justify-between mx-auto'>
+      <div className='w-auto flex items-center gap-2'>
         
         <MobileMenu/>
         <Logo />

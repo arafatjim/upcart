@@ -86,6 +86,36 @@
     }
   },
   {
+    "type": "type",
+    "name": "product.reference",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "_ref": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          }
+        },
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "reference"
+          }
+        },
+        "_weak": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "boolean"
+          },
+          "optional": true
+        }
+      },
+      "dereferencesTo": "product"
+    }
+  },
+  {
     "name": "order",
     "type": "document",
     "attributes": {
@@ -216,30 +246,8 @@
               "productId": {
                 "type": "objectAttribute",
                 "value": {
-                  "type": "object",
-                  "attributes": {
-                    "_ref": {
-                      "type": "objectAttribute",
-                      "value": {
-                        "type": "string"
-                      }
-                    },
-                    "_type": {
-                      "type": "objectAttribute",
-                      "value": {
-                        "type": "string",
-                        "value": "reference"
-                      }
-                    },
-                    "_weak": {
-                      "type": "objectAttribute",
-                      "value": {
-                        "type": "boolean"
-                      },
-                      "optional": true
-                    }
-                  },
-                  "dereferencesTo": "product"
+                  "type": "inline",
+                  "name": "product.reference"
                 },
                 "optional": true
               },
@@ -395,6 +403,96 @@
         },
         "optional": true
       }
+    }
+  },
+  {
+    "type": "type",
+    "name": "sanity.imageAsset.reference",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "_ref": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          }
+        },
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "reference"
+          }
+        },
+        "_weak": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "boolean"
+          },
+          "optional": true
+        }
+      },
+      "dereferencesTo": "sanity.imageAsset"
+    }
+  },
+  {
+    "type": "type",
+    "name": "category.reference",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "_ref": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          }
+        },
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "reference"
+          }
+        },
+        "_weak": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "boolean"
+          },
+          "optional": true
+        }
+      },
+      "dereferencesTo": "category"
+    }
+  },
+  {
+    "type": "type",
+    "name": "brand.reference",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "_ref": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          }
+        },
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "reference"
+          }
+        },
+        "_weak": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "boolean"
+          },
+          "optional": true
+        }
+      },
+      "dereferencesTo": "brand"
     }
   },
   {
@@ -569,30 +667,8 @@
               "asset": {
                 "type": "objectAttribute",
                 "value": {
-                  "type": "object",
-                  "attributes": {
-                    "_ref": {
-                      "type": "objectAttribute",
-                      "value": {
-                        "type": "string"
-                      }
-                    },
-                    "_type": {
-                      "type": "objectAttribute",
-                      "value": {
-                        "type": "string",
-                        "value": "reference"
-                      }
-                    },
-                    "_weak": {
-                      "type": "objectAttribute",
-                      "value": {
-                        "type": "boolean"
-                      },
-                      "optional": true
-                    }
-                  },
-                  "dereferencesTo": "sanity.imageAsset"
+                  "type": "inline",
+                  "name": "sanity.imageAsset.reference"
                 },
                 "optional": true
               },
@@ -645,60 +721,23 @@
       "category": {
         "type": "objectAttribute",
         "value": {
-          "type": "object",
-          "attributes": {
-            "_ref": {
-              "type": "objectAttribute",
-              "value": {
-                "type": "string"
-              }
-            },
-            "_type": {
-              "type": "objectAttribute",
-              "value": {
-                "type": "string",
-                "value": "reference"
-              }
-            },
-            "_weak": {
-              "type": "objectAttribute",
-              "value": {
-                "type": "boolean"
-              },
-              "optional": true
-            }
-          },
-          "dereferencesTo": "category"
+          "type": "inline",
+          "name": "category.reference"
         },
         "optional": true
       },
       "brand": {
         "type": "objectAttribute",
         "value": {
-          "type": "object",
-          "attributes": {
-            "_ref": {
-              "type": "objectAttribute",
-              "value": {
-                "type": "string"
-              }
-            },
-            "_type": {
-              "type": "objectAttribute",
-              "value": {
-                "type": "string",
-                "value": "reference"
-              }
-            },
-            "_weak": {
-              "type": "objectAttribute",
-              "value": {
-                "type": "boolean"
-              },
-              "optional": true
-            }
-          },
-          "dereferencesTo": "brand"
+          "type": "inline",
+          "name": "brand.reference"
+        },
+        "optional": true
+      },
+      "releaseDate": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
         },
         "optional": true
       },
@@ -721,6 +760,10 @@
         "value": {
           "type": "union",
           "of": [
+            {
+              "type": "string",
+              "value": "sale_product"
+            },
             {
               "type": "string",
               "value": "available"
@@ -761,6 +804,50 @@
         "type": "objectAttribute",
         "value": {
           "type": "number"
+        },
+        "optional": true
+      },
+      "reviews": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "array",
+          "of": {
+            "type": "object",
+            "attributes": {
+              "reviewer": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "string"
+                },
+                "optional": true
+              },
+              "comment": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "string"
+                },
+                "optional": true
+              },
+              "rating": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "number"
+                },
+                "optional": true
+              }
+            },
+            "rest": {
+              "type": "object",
+              "attributes": {
+                "_key": {
+                  "type": "objectAttribute",
+                  "value": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
         },
         "optional": true
       },
@@ -845,30 +932,8 @@
             "asset": {
               "type": "objectAttribute",
               "value": {
-                "type": "object",
-                "attributes": {
-                  "_ref": {
-                    "type": "objectAttribute",
-                    "value": {
-                      "type": "string"
-                    }
-                  },
-                  "_type": {
-                    "type": "objectAttribute",
-                    "value": {
-                      "type": "string",
-                      "value": "reference"
-                    }
-                  },
-                  "_weak": {
-                    "type": "objectAttribute",
-                    "value": {
-                      "type": "boolean"
-                    },
-                    "optional": true
-                  }
-                },
-                "dereferencesTo": "sanity.imageAsset"
+                "type": "inline",
+                "name": "sanity.imageAsset.reference"
               },
               "optional": true
             },
@@ -1027,6 +1092,36 @@
     }
   },
   {
+    "type": "type",
+    "name": "author.reference",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "_ref": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          }
+        },
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "reference"
+          }
+        },
+        "_weak": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "boolean"
+          },
+          "optional": true
+        }
+      },
+      "dereferencesTo": "author"
+    }
+  },
+  {
     "name": "post",
     "type": "document",
     "attributes": {
@@ -1079,30 +1174,8 @@
       "author": {
         "type": "objectAttribute",
         "value": {
-          "type": "object",
-          "attributes": {
-            "_ref": {
-              "type": "objectAttribute",
-              "value": {
-                "type": "string"
-              }
-            },
-            "_type": {
-              "type": "objectAttribute",
-              "value": {
-                "type": "string",
-                "value": "reference"
-              }
-            },
-            "_weak": {
-              "type": "objectAttribute",
-              "value": {
-                "type": "boolean"
-              },
-              "optional": true
-            }
-          },
-          "dereferencesTo": "author"
+          "type": "inline",
+          "name": "author.reference"
         },
         "optional": true
       },
@@ -1114,30 +1187,8 @@
             "asset": {
               "type": "objectAttribute",
               "value": {
-                "type": "object",
-                "attributes": {
-                  "_ref": {
-                    "type": "objectAttribute",
-                    "value": {
-                      "type": "string"
-                    }
-                  },
-                  "_type": {
-                    "type": "objectAttribute",
-                    "value": {
-                      "type": "string",
-                      "value": "reference"
-                    }
-                  },
-                  "_weak": {
-                    "type": "objectAttribute",
-                    "value": {
-                      "type": "boolean"
-                    },
-                    "optional": true
-                  }
-                },
-                "dereferencesTo": "sanity.imageAsset"
+                "type": "inline",
+                "name": "sanity.imageAsset.reference"
               },
               "optional": true
             },
@@ -1189,38 +1240,16 @@
           "of": {
             "type": "object",
             "attributes": {
-              "_ref": {
+              "_key": {
                 "type": "objectAttribute",
                 "value": {
                   "type": "string"
                 }
-              },
-              "_type": {
-                "type": "objectAttribute",
-                "value": {
-                  "type": "string",
-                  "value": "reference"
-                }
-              },
-              "_weak": {
-                "type": "objectAttribute",
-                "value": {
-                  "type": "boolean"
-                },
-                "optional": true
               }
             },
-            "dereferencesTo": "category",
             "rest": {
-              "type": "object",
-              "attributes": {
-                "_key": {
-                  "type": "objectAttribute",
-                  "value": {
-                    "type": "string"
-                  }
-                }
-              }
+              "type": "inline",
+              "name": "category.reference"
             }
           }
         },
@@ -1417,30 +1446,8 @@
               "asset": {
                 "type": "objectAttribute",
                 "value": {
-                  "type": "object",
-                  "attributes": {
-                    "_ref": {
-                      "type": "objectAttribute",
-                      "value": {
-                        "type": "string"
-                      }
-                    },
-                    "_type": {
-                      "type": "objectAttribute",
-                      "value": {
-                        "type": "string",
-                        "value": "reference"
-                      }
-                    },
-                    "_weak": {
-                      "type": "objectAttribute",
-                      "value": {
-                        "type": "boolean"
-                      },
-                      "optional": true
-                    }
-                  },
-                  "dereferencesTo": "sanity.imageAsset"
+                  "type": "inline",
+                  "name": "sanity.imageAsset.reference"
                 },
                 "optional": true
               },
@@ -1556,30 +1563,8 @@
             "asset": {
               "type": "objectAttribute",
               "value": {
-                "type": "object",
-                "attributes": {
-                  "_ref": {
-                    "type": "objectAttribute",
-                    "value": {
-                      "type": "string"
-                    }
-                  },
-                  "_type": {
-                    "type": "objectAttribute",
-                    "value": {
-                      "type": "string",
-                      "value": "reference"
-                    }
-                  },
-                  "_weak": {
-                    "type": "objectAttribute",
-                    "value": {
-                      "type": "boolean"
-                    },
-                    "optional": true
-                  }
-                },
-                "dereferencesTo": "sanity.imageAsset"
+                "type": "inline",
+                "name": "sanity.imageAsset.reference"
               },
               "optional": true
             },
@@ -1840,30 +1825,8 @@
             "asset": {
               "type": "objectAttribute",
               "value": {
-                "type": "object",
-                "attributes": {
-                  "_ref": {
-                    "type": "objectAttribute",
-                    "value": {
-                      "type": "string"
-                    }
-                  },
-                  "_type": {
-                    "type": "objectAttribute",
-                    "value": {
-                      "type": "string",
-                      "value": "reference"
-                    }
-                  },
-                  "_weak": {
-                    "type": "objectAttribute",
-                    "value": {
-                      "type": "boolean"
-                    },
-                    "optional": true
-                  }
-                },
-                "dereferencesTo": "sanity.imageAsset"
+                "type": "inline",
+                "name": "sanity.imageAsset.reference"
               },
               "optional": true
             },

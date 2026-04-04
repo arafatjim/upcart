@@ -1,14 +1,21 @@
 import Container from '@/components/Container';
 import HomeBanner from '@/components/ui/banner';
+import HomeCategories from '@/components/ui/HomeCategories';
+import ProductGrid from '@/components/ui/ProductGrid';
+import { getCategories } from '@/sanity/Queries';
 
 
-const HomePage = () => {
+const HomePage = async () => {
+  const categories = await getCategories();
+  console.log('total categories : ',categories)
   return (
-    <Container className='bg-banner rounded-lg py-16 px-8 md:py-24 md:px-16'>
+    <Container className='px-0 py-5 '>
       
-        <HomeBanner />
         
-      
+          <HomeBanner />
+        <ProductGrid/>
+        <HomeCategories categories={categories} />
+
       
     </Container>
   )
