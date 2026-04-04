@@ -3,9 +3,9 @@ import React, { useEffect, useState } from "react";
 import HomeTabBar from "./HomeTabBar";
 import { productType } from '@/Constants/data';
 import { client } from "@/sanity/lib/client";
-import {AnimatePresence, motion} from "motion/react";
+import {AnimatePresence, motion} from "framer-motion";
 import { Loader2 } from "lucide-react";
-import NoProductAvailabel from "./NoProductAvailable";
+import NoProductAvailable from "./NoProductAvailable";
 import ProductCart from "./ProductCart";
 import { Product } from "@/sanity.types";
 
@@ -70,16 +70,16 @@ const ProductGrid = () => {
       ): 
         products?.length ? (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2.5 mt-10">
-          {products?.map ((products) =>(
-            <AnimatePresence key={products?._id}>
+          {products?.map((product) =>(
+            <AnimatePresence key={product?._id}>
               <motion.div layout initial={{opacity: 0.2}} animate={{opacity: 1}} exit={{opacity:0}} >
-                <ProductCart product={products}/>
+                <ProductCart product={product}/>
               </motion.div>
             </AnimatePresence>
           ))}
           </div>
         ) : (
-          <NoProductAvailabel selectedTab={selectedTab}/>
+          <NoProductAvailable selectedTab={selectedTab}/>
           )
       }
     </div>
