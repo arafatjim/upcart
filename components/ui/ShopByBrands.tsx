@@ -6,7 +6,7 @@ import { ShoppingCart } from 'lucide-react'
 
 const ShopByBrands = () => {
   return (
-    <div className='bg-gray-500 border-2 py-3 border-gray-400 flex items-center gap-3 justify-between rounded-md px-4 w-full flex-col md:flex-row'>
+    <div className='bg-gray-300 border-2 py-3 border-gray-400 flex items-center gap-3 justify-between rounded-md px-4 w-full flex-col md:flex-row'>
         
         <div className='border-b-2 w-full md:border-0 text-center md:text-left py-2 '>
             
