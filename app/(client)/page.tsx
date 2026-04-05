@@ -2,6 +2,7 @@ import Container from '@/components/Container';
 import HomeBanner from '@/components/ui/banner';
 import HomeCategories from '@/components/ui/HomeCategories';
 import ProductGrid from '@/components/ui/ProductGrid';
+import ShopByBrands from '@/components/ui/ShopByBrands';
 import { getCategories } from '@/sanity/Queries';
 
 
@@ -15,7 +16,7 @@ const HomePage = async () => {
           <HomeBanner />
         <ProductGrid/>
         <HomeCategories categories={categories} />
-
+        <ShopByBrands/>
       
     </Container>
   )

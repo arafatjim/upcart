@@ -24,7 +24,7 @@ const HomeBanner = () => {
             <Link className='p-2  font-semibold  text-white rounded-sm cursor-pointer bg-success hover:text-gray-600 hover:bg-warning hoverEffect transition' href={'/shop'}>
                 Buy Now
                 <ShoppingCart className='w-5 h-5 ml-2 inline-block'/>
-                {/* <Image src={runLogo} alt='banner' className='w-5 h-5 inline-block ml-2 text-white'/> */}
+                
             </Link>
         </div>
 

@@ -64,7 +64,7 @@ const ProductCart = ({product}:{product: Product}) => {
       <AddToWishListBtn product={product}/>
     </div>
         
-        <div className='w-full h-48 sm:h-56 md:h-64 overflow-hidden'>
+        <div className='w-full h-48 sm:h-56 md:h-64 overflow-hidden items-center'>
             {product.image && product.image[0] && (
             <Image
               src={urlFor(product.image[0]).url()}
@@ -72,7 +72,7 @@ const ProductCart = ({product}:{product: Product}) => {
               loading='lazy'
               width={300}
               height={300}
-              className='w-full h-full object-cover group-hover:scale-105 transition-transform duration-300'
+              className=' w-full h-full  object-cover group-hover:scale-105 transition-transform duration-300'
             />
             )}
         </div>

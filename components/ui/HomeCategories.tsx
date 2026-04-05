@@ -7,29 +7,38 @@ import Link from 'next/link';
 
 const HomeCategories = ({ categories }:{categories?:Category[]}) => {
     const popularCategories = categories?.slice(0, 4) || [];
-    console.log('popular categories:', popularCategories);
+    // console.log('popular categories:', popularCategories);
   return (
-    <div className=' border-2 p-3 border-gray-300 my-2 md:my-6 lg:p-4 rounded-lg bg-green-400/16'>
-        <p className='border-b-2 text-lg pb-2'>Popular Categories</p>
+    <div className=' border-2 p-3 border-gray-400 my-2 md:my-6 lg:p-4 rounded-lg '>
+        <p className='border-b-2 text-lg text-gray-600 font-extrabold pb-2'>Popular Categories</p>
       
-      <div className='grid grid-cols-1  md:grid-cols-2 lg:grid-cols-4 gap-4 mt-4'>
+      <div className='grid grid-cols-1 justify-between md:grid-cols-2 lg:grid-cols-4 gap-4 mt-4'>
         {categories?.map((category) => (
-          <div key={category._id} className='mb-4 p-5 flex object-cover text-nowrap items-center gap-4 bg-white border-2 border-gray-300 rounded-lg hover:shadow-md transition-shadow duration-300 group '>
-            <Title className='text-sm'>{category?.title}</Title>
+          <Link className='' href={`/category/${category?.slug?.current}`} key={category._id}>
+          <div key={category._id} className='mb-4 p-5 flex flex-row-reverse justify-between object-cover text-nowrap items-center gap-4  border-2 rounded-lg hover:bg-green-400 hover:shadow-md transition-shadow duration-300 group'>
+            
             {/* <p className='text-sm text-gray-500'>{category?._updatedAt}</p> */}
             {category?.image && (
-              <div className='overflow-hidden border-2 border-gray-300/40 hover:border-orange-700 w-36 h-20 p-1 rounded-lg group'>
-                <Link href={`/category/${category?.slug?.current}`}>
-                <Image 
-              src={urlFor(category?.image).url()} width={500} 
-              height={500} 
-              alt={category?.title || 'Category Image'}  
-              className='w-full h-full object-contain group-hover:scale-110 hoverEffect'/>
-                </Link>
+              <div className='overflow-hidden w-full border-2  hover:border-amber-300 h-20 p-1 rounded-lg group'>
+
+                <Image
+              src={urlFor(category?.image).url()} width={500}
+              height={500}
+              alt={category?.title || 'Category Image'}
+              className='w-2/3 h-full  object-contain group-hover:scale-110 hoverEffect'/>
+
               </div>
             )}
-            
+<div>
+              <div className='space-y-1.5'>
+                <h3 className='text-md font-semibold text-gray-500'>{category?.title}</h3>
+              </div>
+              <p className='text-xs text-green-600'>
+                <span className='text-bold'>{`(${category?.productCount})`}</span>{" "} Availabel Items
+              </p>
+            </div>
           </div>
+          </Link>
         ))}
       </div>
     </div>

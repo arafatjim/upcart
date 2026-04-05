@@ -320,6 +320,7 @@ export type Category = {
   description?: string;
   range?: string;
   featured?: boolean;
+  productCount?: number;
   image?: {
     asset?: SanityImageAssetReference;
     media?: unknown;
