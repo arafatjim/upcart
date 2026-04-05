@@ -12,10 +12,10 @@ const HomeCategories = ({ categories }:{categories?:Category[]}) => {
     <div className=' border-2 p-3 border-gray-400 my-2 md:my-6 lg:p-4 rounded-lg '>
         <p className='border-b-2 text-lg text-gray-600 font-extrabold pb-2'>Popular Categories</p>
       
-      <div className='grid grid-cols-1 justify-between md:grid-cols-2 lg:grid-cols-4 gap-4 mt-4'>
+      <div className='grid grid-cols-1 items-center justify-between md:grid-cols-2 lg:grid-cols-4 gap-4 mt-4'>
         {categories?.map((category) => (
           <Link className='' href={`/category/${category?.slug?.current}`} key={category._id}>
-          <div key={category._id} className='mb-4 p-5 flex flex-row-reverse justify-between object-cover text-nowrap items-center gap-4  border-2 rounded-lg hover:bg-green-400 hover:shadow-md transition-shadow duration-300 group'>
+          <div key={category._id} className='mb-4 p-5 flex flex-row-reverse justify-between object-cover text-nowrap items-center gap-4  border-2 rounded-lg hover:bg-gray-300/40 hover:shadow-md transition-shadow duration-300 group'>
             
             {/* <p className='text-sm text-gray-500'>{category?._updatedAt}</p> */}
             {category?.image && (
