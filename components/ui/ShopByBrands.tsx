@@ -10,7 +10,7 @@ const ShopByBrands = async () => {
   console.log("RAW BRAND DATA:", JSON.stringify(brands[0], null, 2));
 
   return (
-    <div className='my-10 py-4 gap-3 bg-gray-200 justify-between rounded-md px-4 w-full flex-col md:flex-row'>
+    <div className='my-10 py-4 gap-3 bg-bglight justify-between rounded-md px-4 w-full flex-col md:flex-row'>
       
       <div className='flex items-center justify-between py-4 border-b-2 border-gray-100 '>
         <p className='text-xl font-bold text-gray-600'>Shop By Brands</p>

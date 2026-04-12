@@ -6,10 +6,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 const HomeCategories = ({ categories }:{categories?:Category[]}) => {
-    const popularCategories = categories?.slice(0, 4) || [];
+    // const popularCategories = categories?.slice(0, 4) || [];
     // console.log('popular categories:', popularCategories);
   return (
-    <div className='bg-gray-300 p-3 my-2 md:my-6 lg:p-4 rounded-lg '>
+    <div className='bg-bglight p-3 my-2 md:my-6 lg:p-4 rounded-lg '>
         <p className='border-b-2 text-lg text-gray-600 font-extrabold pb-2'>Popular Categories</p>
       
       <div className='grid grid-cols-1 items-center  justify-between md:grid-cols-2 lg:grid-cols-4 gap-4 mt-4'>

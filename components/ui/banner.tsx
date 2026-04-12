@@ -9,7 +9,7 @@ import { ShoppingCart } from 'lucide-react'
 
 const HomeBanner = () => {
   return (
-    <div className='flex bg-green-400/16 flex-col p-4 justify-between items-center rounded-md md:flex-row'>
+    <div className='flex bg-bglight flex-col p-4 justify-between items-center rounded-md md:flex-row'>
       {/* banner left */}
       <div className='flex flex-col w-full  justify-center items-center gap-6 mx-auto space-y-5 md:space-y-0 md:gap-2 md:items-start md:w-3/5'>
         <Title className=''>

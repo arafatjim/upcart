@@ -11,7 +11,7 @@ const FooterBottom = () => {
   return (
     
       <div>
-        <div className='bg-nav_footer p-4 grid gap-4 grid-cols-1  md:grid-cols-2 lg:grid-cols-4'>
+        <div className='bg-nav_footer p-4 rounded-t-lg grid gap-4 grid-cols-1  md:grid-cols-2 lg:grid-cols-4'>
         <div className=''>
             <Logo  />
             <SocialLinks className='py-2'/>
@@ -29,20 +29,20 @@ const FooterBottom = () => {
         <div className=''>
             <SubTitle>Newsletter</SubTitle>
             <Subtext>Subscribe for latest offers and deals</Subtext>
-            <form className='py-2 px-0'>
-                <Input className='p-2 text-sm border-2 w-full rounded-lg bg-light text-gray-700 border-white' type="email" name="" id="" placeholder='Enter your email here..' required />
+            <form className='py-2 px-0 w-full flex flex-col gap-2'>
+                <div className='w-full flex items-center gap-2 text-black bg-bglight rounded-md' >
+                    <Input className='text-gray-700' type="email" name="" id="" placeholder='Enter your email here..' required />
+                </div>
 
-                <Button className='p-2 my-4 w-full font-semibold  text-white rounded-sm cursor-pointer bg-success hover:text-gray-600 hover:bg-warning hoverEffect transition'>
-                    
+                <Button className='p-2 my-4 w-full font-semibold  text-white rounded-sm cursor-pointer bg-success hover:text-gray-600 hover:bg-warning hoverEffect transition'>  
                         Subscribe Now
-                    
                 </Button>
             </form>
         </div>
         
       </div>
 
-      <div className='flex justify-center p-2 text-center text-sm items-center gap-x-2 mx-auto bg-dark text-white'>
+      <div className='flex justify-center p-2 text-center text-sm items-center gap-x-2 mx-auto bg-nav_footer text-white'>
         
         ©{new Date().getFullYear()} 
         <Logo className='text-sm mask-b-from-70%'/>
