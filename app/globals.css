@@ -4,9 +4,7 @@
 @import "tailwindcss/utilities";
 @import "tw-animate-css";
 
-
-
-@theme{
+@theme {
   --color-primary: #485460;
   --color-secondary: #6c757d;
   --color-success: #198754;
@@ -16,7 +14,7 @@
   --color-light: #dff9fb;
   --color-dark: #212529;
   --color-banner: #f7f1e3;
-  --color-bglight:#FAFBFB;
+  --color-bglight: #FAFBFB;
   --color-nav_footer: #485460;
   --font-mono: 'JetBrains Mono', monospace;
   --font-archive: 'Archivo Black', sans-serif;
@@ -36,9 +34,10 @@
   --color-card-foreground: var(--card-foreground);
   --color-popover: var(--popover);
   --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
+
+  /* ❌ --color-primary এবং --color-secondary সরানো হয়েছে */
+
   --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
@@ -139,10 +138,49 @@
   body {
     @apply bg-background text-foreground;
   }
-  .hoverEffect{
+  .hoverEffect {
     @apply transition-all duration-300 ease-in-out;
   }
-  .button{
+  .button {
     @apply hover:cursor-pointer hover:scale-105 transition-transform duration-200 hover:text-warning/80;
+  }
+}
+
+@layer utilities {
+  .text-warning {
+    color: var(--color-warning);
+  }
+  .bg-warning {
+    background-color: var(--color-warning);
+  }
+  .text-success {
+    color: var(--color-success);
+  }
+  .bg-success {
+    background-color: var(--color-success);
+  }
+  .text-danger {
+    color: var(--color-danger);
+  }
+  .bg-danger {
+    background-color: var(--color-danger);
+  }
+  .text-info {
+    color: var(--color-info);
+  }
+  .bg-info {
+    background-color: var(--color-info);
+  }
+  .text-primary {
+    color: var(--color-primary);
+  }
+  .bg-primary {
+    background-color: var(--color-primary);
+  }
+  .text-secondary {
+    color: var(--color-secondary);
+  }
+  .bg-secondary {
+    background-color: var(--color-secondary);
   }
 }
