@@ -17,7 +17,6 @@ import {
 } from "lucide-react";
 import AddToWishListBtn from './AddToWishListBtn';
 import CartIcon from './CartIcon';
-import { insert } from 'sanity';
 import AddCartButton from './AddCartButton';
 
 const statusConfig: Record<string, { text: string; className: string; icon: React.ElementType }> = {
@@ -47,7 +46,7 @@ const ProductCart = ({product}:{product: Product}) => {
       
       <div className='relative group flex items-center justify-center'>
         
-          {/* <AddToWishListBtn product={product}/> */}
+          
         
         {config && (
   <Link href={`${product?.status}`}
