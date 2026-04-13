@@ -18,8 +18,8 @@ const LatestBlogs = async() => {
         {
             posts?.map((blog: Post)=>{
                 return (
-                    <Link href={`/blog/${blog.slug.current}`} key={blog._id} className='flex flex-col gap-2 rounded-md bg-white shadow-md overflow-hidden'>
-                        <div key={blog?._id} className='group flex flex-col items-center justify-center gap-2 cursor-pointer border-2 border-gray-300 rounded-md p-2 hover:shadow-lg transition-shadow duration-300'>
+                    <Link href={`/blog/${blog?.slug?.current}`} key={blog._id} className='flex flex-col gap-2 rounded-md bg-white shadow-md overflow-hidden'>
+                        <div key={blog?._id} className='flex flex-col gap-2 rounded-md bg-white shadow-md overflow-hidden p-2'>
                         
                         <Image
                                       src={blog?.mainImage ? urlFor(blog.mainImage).url() : '/placeholder-blog.png'}
@@ -29,7 +29,7 @@ const LatestBlogs = async() => {
                                       className='w-full h-48 object-cover rounded-md'
                                     />
 
-                        <div className='flex items-center justify-center gap-2 py-1 px-0 rounded-md text-xs'>
+                        <div className='flex items-start justify-around gap-2 py-1 px-0 rounded-md text-xs'>
                             <p className='text-nowrap border-b-2 font-bold'>{blog?.title?.slice(0, 30)}</p>
                             <p className='text-nowrap border-b-2'>{blog?.publishedAt ? new Date(blog?.publishedAt).toLocaleDateString('en-US', {
                                 year: 'numeric',
