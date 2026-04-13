@@ -1,5 +1,5 @@
 import { sanityFetch } from "../lib/live";
-import { BRAND_QUERY } from "./query";
+import { BRAND_QUERY, LATEST_BLOGS_QUERY } from "./query";
 
  const getCategories = async(quantity? : number)=>{
     try{
@@ -28,14 +28,16 @@ const getAllBrands = async()=>{
     }
 }
 
-const getLeatestBlogs = async()=>{
+const getLatestBlogs = async()=>{
     try{
         const {data} = await sanityFetch({query: LATEST_BLOGS_QUERY});
         return data ?? [];
     }
     catch(error){
-        console.log('Error Fatching Leatest Blogs', error);
+        console.log('Error Fatching latest blogs', error);
         return [];
     }
+}
 
-export { getCategories, getAllBrands, getLeatestBlogs}; 
+
+export { getCategories, getAllBrands, getLatestBlogs }; 

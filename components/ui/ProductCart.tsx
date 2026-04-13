@@ -42,7 +42,7 @@ const ProductCart = ({product}:{product: Product}) => {
   const productType = product?.productType || "Unknown Type";
   const totalDiscountAmount = price - discountedPrice;
   return (
-    <div className='border-2 border-gray-400 rounded-lg overflow-hidden bg-white shadow-md hover:shadow-lg transition-shadow duration-300'>
+    <div className='bg-light rounded-md border p-2 flex flex-col hover:shadow-lg shadow-gray-400 transition-shadow duration-300'>
       
       <div className='relative group flex items-center justify-center'>
         
@@ -108,7 +108,7 @@ const ProductCart = ({product}:{product: Product}) => {
             </div>
             </div>
             <h3 className='font-semibold textd-xl text-success text-start'>
-              {productName.length > 20 ? `${productName.slice(0, 16)}` : productName}
+              {productName?.length > 20 ? `${productName.slice(0, 16)}` : productName}
             </h3>
             <p className='text-xs font-bold text-gray-400'>{rating ? `Rating: ${rating} /5.0` : "Rating: NAN"}</p>
             <div className='flex  gap-2'>
@@ -125,7 +125,7 @@ const ProductCart = ({product}:{product: Product}) => {
               {inStock > 0 ? `In Stock: ${inStock}` : "Out of Stock"}
             </p>
             
-          <AddCartButton product={product} className='mx-auto border-2 cursor-pointer text-md' />
+          <AddCartButton product={product} className='mx-auto my-2.5 border-2 cursor-pointer text-md' />
           </div>
     </div>
   )

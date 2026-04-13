@@ -1,4 +1,3 @@
-import {DocumentTextIcon} from '@sanity/icons'
 import {defineArrayMember, defineField, defineType} from 'sanity'
 
 export const blogType = defineType({
