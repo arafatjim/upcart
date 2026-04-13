@@ -28,4 +28,14 @@ const getAllBrands = async()=>{
     }
 }
 
-export { getCategories, getAllBrands }; 
+const getLeatestBlogs = async()=>{
+    try{
+        const {data} = await sanityFetch({query: LATEST_BLOGS_QUERY});
+        return data ?? [];
+    }
+    catch(error){
+        console.log('Error Fatching Leatest Blogs', error);
+        return [];
+    }
+
+export { getCategories, getAllBrands, getLeatestBlogs}; 
