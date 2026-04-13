@@ -125,7 +125,7 @@ const ProductCart = ({product}:{product: Product}) => {
               {inStock > 0 ? `In Stock: ${inStock}` : "Out of Stock"}
             </p>
             
-          <AddCartButton product={product} className='mx-auto my-2.5 border-2 cursor-pointer text-md' />
+          <AddCartButton product={product} />
           </div>
     </div>
   )
