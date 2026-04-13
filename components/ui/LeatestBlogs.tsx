@@ -18,7 +18,8 @@ const LatestBlogs = async() => {
         {
             posts?.map((blog: Post)=>{
                 return (
-                    <div key={blog?._id} className='group flex flex-col items-center justify-center gap-2 cursor-pointer border-2 border-gray-300 rounded-md p-2 hover:shadow-lg transition-shadow duration-300'>
+                    <Link href={`/blog/${blog.slug.current}`} key={blog._id} className='flex flex-col gap-2 rounded-md bg-white shadow-md overflow-hidden'>
+                        <div key={blog?._id} className='group flex flex-col items-center justify-center gap-2 cursor-pointer border-2 border-gray-300 rounded-md p-2 hover:shadow-lg transition-shadow duration-300'>
                         
                         <Image
                                       src={blog?.mainImage ? urlFor(blog.mainImage).url() : '/placeholder-blog.png'}
@@ -34,20 +35,20 @@ const LatestBlogs = async() => {
                                 year: 'numeric',
                                 month: 'long',
                                 day: 'numeric',
-                                
+                                // hour: '2-digit',
+                                // minute: '2-digit'
                             }) : 'No date available'}</p>
                         </div>
 
                         <div className='flex flex-col items-start justify-start gap-2 py-1 px-0 rounded-md text-xs'>
                             <p className='text-black text-lg font-extrabold'>{(blog?.body?.[0] as { children?: { text?: string }[] })?.children?.[0]?.text || 'No description available'}</p>
 
-                            <Link href={`/blog/${blog?.slug?.current}`} className='mt-2'>
-                                <Button size='sm'>Read More</Button>
-                            </Link>
+                            
 
                         </div>
 
                     </div>
+                    </Link>
                 )
             })
         }
