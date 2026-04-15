@@ -3,35 +3,35 @@ import React from 'react'
 import Image from 'next/image';
 import { urlFor } from '@/sanity/lib/image';
 import { Post } from '@/sanity.types';
-import { Button } from './button';
 import Link from 'next/link';
+import { PortableText } from 'next-sanity';
+import { Button } from './button';
 
 
 const LatestBlogs = async() => {
     const posts= await getLatestBlogs();
     console.log('RAW BLOG DATA : ', JSON.stringify(posts[0], null, 2));
   return (
-    <div className='my-10 lg:mb-20 py-4 gap-3 bg-bglight justify-between rounded-md px-4 w-full flex flex-col'>
-      <p className='text-lg text-gray-600 font-extrabold pb-2 border-b-2'>Our Latest Blogs</p>
+    <div className='my-10 lg:mb-20 py-8 gap-3 bg-bglight justify-between rounded-md px-6 w-full flex flex-col'>
+      <p className='font-bold text-lg border-b-2 py-4 mb-3'>Our Latest Blogs</p>
 
-    <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-4'>
+    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full'>
         {
             posts?.map((blog: Post)=>{
                 return (
-                    <Link href={`/blog/${blog?.slug?.current}`} key={blog._id} className='flex flex-col gap-2 rounded-md bg-white shadow-md overflow-hidden'>
-                        <div key={blog?._id} className='flex flex-col gap-2 rounded-md bg-white shadow-md overflow-hidden p-2'>
-                        
+                    <Link href={`/blog/${blog?.slug?.current}`} key={blog._id} className='w-full'>
+                        <div key={blog?._id} className='flex flex-col bg-white rounded-md shadow-md hover:shadow-lg transition-shadow duration-300 w-full h-full'>                        
                         <Image
-                                      src={blog?.mainImage ? urlFor(blog.mainImage).url() : '/placeholder-blog.png'}
+                                      src={blog?.mainImage ? urlFor(blog?.mainImage).url() : '/placeholder-blog.png'}
                                       alt={blog?.title || 'Blog image'}
                                       width={250}
                                       height={250}
-                                      className='w-full h-48 object-cover rounded-md'
+                                      className='w-full h-48 object-cover rounded-t-md'
                                     />
 
-                        <div className='flex items-start justify-around gap-2 py-1 px-0 rounded-md text-xs'>
-                            <p className='text-nowrap border-b-2 font-bold'>{blog?.title?.slice(0, 30)}</p>
-                            <p className='text-nowrap border-b-2'>{blog?.publishedAt ? new Date(blog?.publishedAt).toLocaleDateString('en-US', {
+                        <div className='p-4 flex justify-between gap-2  '>
+                            <p className='font-bold text-lg border-b-2'>{blog?.title?.slice(0, 30)}</p>
+                            <p className='text-sm text-gray-500'>{blog?.publishedAt ? new Date(blog?.publishedAt).toLocaleDateString('en-US', {
                                 year: 'numeric',
                                 month: 'long',
                                 day: 'numeric',
@@ -40,18 +40,52 @@ const LatestBlogs = async() => {
                             }) : 'No date available'}</p>
                         </div>
 
-                        <div className='flex flex-col items-start justify-start gap-2 py-1 px-0 rounded-md text-xs'>
-                            <p className='text-black text-lg font-extrabold'>{(blog?.body?.[0] as { children?: { text?: string }[] })?.children?.[0]?.text || 'No description available'}</p>
+                        {/* author */}
+                            <div className='px-4 py-2 flex items-center gap-3'>
+                                <div className='flex items-center gap-3'>
+                                    <Image
+                                    src={blog?.author?.image ? urlFor(blog.author.image).url() : '/placeholder-author.png'}
+                                    alt={blog?.author?.name || 'Author image'}
+                                    width={50}
+                                    height={50}
+                                    className='w-10 h-10 rounded-full object-cover'
+                                />
+                                <p className='text-sm text-gray-600'>By <span className='text-md font-extrabold  text-black'>{blog?.author?.name || 'Unknown Author'}</span></p>
+                                </div>
+                                
+                            </div>
+                        <div className='px-4 py-2 flex flex-col gap-3 justify-between mt-auto'>
 
                             
-
+                           <p className='text-sm text-gray-600'>
+                            {blog?.body && (() => {
+                                // Extract plain text from PortableText blocks and limit to 100 characters
+                                const plainText = blog.body
+                                    .map((block: any) => block.children?.map((child: any) => child.text).join(''))
+                                    .join(' ');
+                                
+                                return (
+                                    <p className='text-sm text-gray-600'>
+                                        {plainText.slice(0, 100)}{plainText.length > 100 ? '...' : ''}
+                                    </p>
+                                );
+                            })()}
+                           </p>
+                                
+                            <Link href={`/author/${blog?.author?.slug?.current}`} >
+                                    <Button className='bg-success text-sm text-white font-bold hover:bg-warning hover:text-gray-700' >
+                                        View Author
+                                    </Button>
+                                </Link>
                         </div>
-
+                    
                     </div>
+                    
                     </Link>
                 )
             })
         }
+        
     </div>
 
     </div>
