@@ -8,7 +8,7 @@ type CategoryWithCount = Category & { productCount: number };
 
 const HomeCategories = ({ categories }:{categories?:CategoryWithCount[]}) => {
   return (
-    <div className='bg-bglight p-2 my-2 md:my-6 lg:p-4 rounded-lg '>
+    <div className='bg-white p-2 my-2 md:my-6 lg:p-4 rounded-lg '>
         <p className='border-b-2 my-2 text-2xl  font-extrabold p-2'>Popular Categories</p>
       
       <div className='w-full py-4 gap-3 justify-between rounded-md px-1 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6'>

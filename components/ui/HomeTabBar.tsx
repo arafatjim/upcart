@@ -10,7 +10,7 @@ interface Props{
 
 const HomeTabBar = ({selectedTab, onTabSelect}: Props) => {
   return (
-    <div className='flex flex-row flex-nowrap justify-between items-baseline h-auto px-2 py-4 gap-5  border-2 rounded-md text-xs  font-semibold '>
+    <div className='flex flex-row whitespace-nowrap justify-between items-baseline h-auto px-2 py-4 gap-5  border-2 rounded-md text-xs  font-semibold '>
       {/* left Tab-bar */}
       <div className='w-4/5 flex flex-wrap justify-start gap-6 font-semibold  items-center'>
         

@@ -144,13 +144,10 @@ import {
   Zap,
   Star,
   Clock,
-  AlertTriangle,
   Sparkles,
-  ShoppingBag,
   StarIcon,
 } from "lucide-react";
 import AddToWishListBtn from './AddToWishListBtn';
-import CartIcon from './CartIcon';
 import AddCartButton from './AddCartButton';
 
 const statusConfig: Record<string, { text: string; className: string; icon: React.ElementType }> = {
@@ -199,7 +196,7 @@ const ProductCart = ({product}:{product: ProductCartItem}) => {
       <AddToWishListBtn />
     </div>
         
-        <div className='w-full h-48 sm:h-36 md:h-64 overflow-hidden items-center'>
+        <div className='w-full h-48 sm:h-30 md:h-64 overflow-hidden items-center'>
             {product.image && product.image[0] && (
             <Image
               src={urlFor(product.image[0]).url()}
@@ -213,17 +210,17 @@ const ProductCart = ({product}:{product: ProductCartItem}) => {
         </div>
       <div className='absolute top-1 right-1 flex flex-col items-end gap-1'>
         <p className=' bg-dark text-white  text-xs border-2 border-gray-400 rounded-2xl px-1'>{discount}%OFF</p>
-        <p className=' bg-dark text-white  text-xs border-2 border-gray-400 rounded-2xl px-1'>Save:{totalDiscountAmount.toFixed(2)}TK</p>
+        <p className=' bg-dark text-white  text-xs border-2 border-gray-400 rounded-2xl px-1'>-{totalDiscountAmount.toFixed(2)}TK</p>
       </div>
         
       </div>
      
-          <div className='flex flex-col gap-1 px-2 py-1'>
+          <div className='flex flex-col gap-1 px-1 py-1'>
             <div className='flex items-center gap-2 text-xs font-bold text-gray-400 uppercase'>
               Type:
               <p className=''>
                 
-              {productType.charAt(0).toUpperCase() + productType.slice(1)}
+              {productType ? productType.charAt(0).toUpperCase() + productType.slice(1) : "Unknown Type"}
             </p> 
             
             </div>
@@ -240,12 +237,12 @@ const ProductCart = ({product}:{product: ProductCartItem}) => {
             </div>
             
             <div className="reviews  font-bold text-gray-400 text-nowrap tracking-wide pl-1">
-               5 reviews
+                5 reviews
             </div>
             </div>
-            <h3 className='font-semibold textd-xl text-success text-start'>
-              {productName?.length > 20 ? `${productName.slice(0, 16)}` : productName}
-            </h3>
+            <a className='font-semibold textd-sm text-success text-start'>
+              {productName?.length > 20 ? `${productName.slice(0, 16)}...` : productName}
+            </a>
             <p className='text-xs font-bold text-gray-400'>{rating ? `Rating: ${rating} /5.0` : "Rating: NAN"}</p>
             <div className='flex  gap-2'>
 

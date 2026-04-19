@@ -193,7 +193,8 @@ const PRODUCT_BY_BRAND_QUERY = defineQuery(`*[_type == 'product' && brand->slug.
   }
 }`);
 
-const DEAL_PRODUCTS_QUERY = defineQuery(`*[_type == 'product' && discount > 0] | order(discount desc){
+const DEAL_PRODUCTS_QUERY = defineQuery(
+  `*[_type == 'product' && discount > 0] | order(discount desc){
   _id,
   name,
   slug,

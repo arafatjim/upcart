@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import HomeTabBar from "./HomeTabBar";
 import { productType } from '@/Constants/data';
 import { client } from "@/sanity/lib/client";
@@ -33,7 +33,7 @@ const ProductGrid = () => {
 }
   `;
 
-  const fetchProducts = async (variant: string) => {
+  const fetchProducts = useCallback(async (variant: string) => {
     setLoading(true);
     try {
       const response = await client.fetch(query, {
@@ -47,13 +47,13 @@ const ProductGrid = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [selectedTab]);
 
   useEffect(() => {
     if (selectedTab) {
       fetchProducts(selectedTab);
     }
-  }, [selectedTab]);
+  }, [selectedTab, fetchProducts]);
 
   return (
     <div className="py-4 px-auto flex flex-col gap-2">
@@ -69,7 +69,7 @@ const ProductGrid = () => {
         </div>
       ): 
         products?.length ? (
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2.5 mt-10">
+          <div className="grid p-4 rounded-md bg-white grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2.5 mt-10">
           {products?.map((product) =>(
             <AnimatePresence key={product?._id}>
               <motion.div layout initial={{opacity: 0.2}} animate={{opacity: 1}} exit={{opacity:0}} >
