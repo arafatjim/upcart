@@ -47,8 +47,8 @@ const ShopByBrands = async () => {
   return (
     <div className='mb-10 py-4 gap-3 bg-bglight justify-between rounded-md px-4 w-full flex-col md:flex-row'>
       
-      <div className='flex items-center justify-between py-4 border-b-2 border-gray-100 '>
-        <p className='text-xl font-bold text-gray-600'>Shop By Brands</p>
+      <div className='flex items-center justify-between py-4  border-gray-200 border-b-2 '>
+        <p className='text-2xl font-extrabold '>Shop By Brands</p>
         <Button className='bg-success font-bold text-white px-3 py-4 rounded-md hover:bg-warning hover:text-gray-600 transition-colors duration-300'>
           <Link href={'/brands'}>View All</Link>
         </Button>

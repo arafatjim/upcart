@@ -1,41 +1,4 @@
-// import { defineQuery } from "next-sanity";
-
-// const BRAND_QUERY = defineQuery(`*[_type == 'brand'] | order(name asc){
-//     _id,
-//     name,
-//     slug,
-//     description,
-//     logo
-// }`);
-
-// const LATEST_BLOGS_QUERY = defineQuery(`*[_type == 'post'] {
-//   _id,
-//   title,
-//   slug,
-//   publishedAt,
-//   mainImage {
-//     asset,
-//     alt
-//   },
-//   categories[]-> {
-//     _id,
-//     title
-//   },
-//   author-> {
-//     _id,
-//     name,
-//     slug,
-//     image,
-//     bio
-//   },
-//   body
-// }`);
-
-
-
-// export {BRAND_QUERY, LATEST_BLOGS_QUERY,};
 import { defineQuery } from "next-sanity";
-
 const BRAND_QUERY = defineQuery(`*[_type == 'brand'] | order(name asc){
     _id,
     name,
@@ -230,6 +193,34 @@ const PRODUCT_BY_BRAND_QUERY = defineQuery(`*[_type == 'product' && brand->slug.
   }
 }`);
 
+const DEAL_PRODUCTS_QUERY = defineQuery(`*[_type == 'product' && discount > 0] | order(discount desc){
+  _id,
+  name,
+  slug,
+  price,
+  discount,
+  stock,
+  status,
+  rating,
+  productType,
+  featured,
+  image[]{
+    asset,
+    hotspot
+  },
+  category->{
+    _id,
+    title,
+    slug
+  },
+  brand->{
+    _id,
+    name,
+    slug
+  }
+}`);
+
+
 export {
   BRAND_QUERY,
   LATEST_BLOGS_QUERY,
@@ -238,4 +229,5 @@ export {
   FEATURED_PRODUCT_QUERY,
   PRODUCT_BY_CATEGORY_QUERY,
   PRODUCT_BY_BRAND_QUERY,
+  DEAL_PRODUCTS_QUERY
 };

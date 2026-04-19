@@ -1,18 +1,12 @@
 'use client'
+import { ShoppingBasketIcon } from 'lucide-react'
 import React from 'react'
 
 const Blogs = () => {
   return (
-    <div className='flex flex-col flex-1 gap-4 p-4 md:p-8 lg:p-16'>
-      <h1>This is blog page</h1>
-      <i>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consectetur alias earum reprehenderit est ab omnis quasi consequuntur ex, labore, numquam hic cupiditate delectus sunt quae error minima, fuga velit nesciunt.
-      </i>
-      <i>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Exercitationem facere quaerat iure quas commodi autem quasi officia, at nam temporibus maiores id, nostrum iste labore omnis sequi illum, ab cumque.</i>
-      <i>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Exercitationem facere quaerat iure quas commodi autem quasi officia, at nam temporibus maiores id, nostrum iste labore omnis sequi illum, ab cumque.</i>
-      <i>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Exercitationem facere quaerat iure quas commodi autem quasi officia, at nam temporibus maiores id, nostrum iste labore omnis sequi illum, ab cumque.</i>
-      <i>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Exercitationem facere quaerat iure quas commodi autem quasi officia, at nam temporibus maiores id, nostrum iste labore omnis sequi illum, ab cumque.</i>
-      <i>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minus quasi facere rerum provident pariatur molestias mollitia sapiente, quod autem, amet non corrupti earum! Ducimus delectus explicabo tempora in doloremque quibusdam blanditiis architecto unde sequi mollitia nobis molestiae nisi, quidem provident iste fugiat, sapiente sunt laudantium, dignissimos quis nulla non. Velit nisi vitae hic suscipit eos aliquam sint, iste voluptas saepe eaque tenetur nulla quibusdam inventore, sapiente fuga obcaecati ut numquam voluptatem? Sed, cupiditate, dolorum esse quidem eligendi illum sint itaque amet aliquam cum omnis optio fugiat ipsa, sit id. Maiores modi odio, facilis iure ad veritatis quo suscipit repellendus accusamus?</i>
-      <i>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid placeat voluptate iusto dolorem velit dolorum tenetur commodi similique saepe, facere voluptas ea in, reprehenderit sit quisquam sunt odit! Perferendis dolores necessitatibus voluptas provident ad laboriosam vitae voluptatum error doloremque dolorum nisi itaque illum neque possimus doloribus pariatur culpa sapiente, libero laudantium porro nihil? Quo voluptate ex quod mollitia molestias voluptas placeat quibusdam sunt nemo quis facere, a voluptatum itaque blanditiis animi iusto. Quia enim suscipit hic eaque quibusdam corrupti necessitatibus possimus sint doloremque voluptatum, modi vel. Voluptatibus, consequuntur reprehenderit provident laborum impedit est nam adipisci eos inventore cum aspernatur iste necessitatibus unde ducimus praesentium animi ullam nihil, facilis porro architecto! Voluptatem esse nobis veritatis? Eligendi tenetur libero non? Itaque iusto in, aperiam ad sint accusantium? Culpa laborum vel inventore, dolor tenetur praesentium veritatis vero possimus doloribus aspernatur, commodi qui dolore illo maiores? Veritatis adipisci, rem atque cumque repudiandae exercitationem voluptates tempore molestiae! Magnam tenetur sunt maiores saepe, cumque minima neque perferendis animi velit assumenda fuga ducimus nemo ipsum expedita nobis delectus eius, pariatur reprehenderit voluptatum ab nihil corporis blanditiis quia? Tempora ipsum veritatis asperiores distinctio fugiat numquam suscipit labore nam ex, molestiae sapiente corrupti reprehenderit. Minima alias reiciendis quibusdam porro.</i>
+    <div>
+        <h1>Blogs Page</h1>
+        <ShoppingBasketIcon size={24} className='text-gray-500' />
     </div>
   )
 }

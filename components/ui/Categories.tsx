@@ -1,5 +1,5 @@
 import React from 'react'
-import { Subtext, SubTitle } from './Title'
+import {  SubTitle } from './Title'
 import { CategoriesData } from '@/Constants/data'
 import Link from 'next/link'
 
@@ -10,7 +10,7 @@ const Categories = () => {
       <div className='grid grid-cols-1 pb-2 gap-2 text-sm text-gray-400' >
         {
             CategoriesData.map(item => { 
-                return <Link className='hover:text-warning' href={item?.href} key={ item?.id }>{ item.title }</Link> 
+                return <Link className='hover:text-warning' href={item?.href} key={ item?.id }>{ item?.title }</Link> 
             })
         }
       </div>
