@@ -69,6 +69,10 @@ const LATEST_BLOGS_QUERY = defineQuery(`*[_type == 'post'] {
 
 const PRODUCT_QUERY = defineQuery(`*[_type == 'product'] | order(_createdAt desc){
   _id,
+  _type,
+  _createdAt,
+  _updatedAt,
+  _rev,
   name,
   slug,
   description,

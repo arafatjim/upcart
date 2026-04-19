@@ -519,9 +519,13 @@ export type LATEST_BLOGS_QUERY_RESULT = Array<{
 
 // Source: sanity/Queries/query.ts
 // Variable: PRODUCT_QUERY
-// Query: *[_type == 'product'] | order(_createdAt desc){  _id,  name,  slug,  description,  price,  discount,  stock,  status,  rating,  productType,  featured,  releaseDate,  image[]{    asset,    hotspot  },  specifications[]{    key,    value  },  reviews[]{    reviewer,    comment,    rating  },  category->{    _id,    title,    slug  },  brand->{    _id,    name,    slug,    logo  }}
+// Query: *[_type == 'product'] | order(_createdAt desc){  _id,  _type,  _createdAt,  _updatedAt,  _rev,  name,  slug,  description,  price,  discount,  stock,  status,  rating,  productType,  featured,  releaseDate,  image[]{    asset,    hotspot  },  specifications[]{    key,    value  },  reviews[]{    reviewer,    comment,    rating  },  category->{    _id,    title,    slug  },  brand->{    _id,    name,    slug,    logo  }}
 export type PRODUCT_QUERY_RESULT = Array<{
   _id: string;
+  _type: "product";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
   name: string | null;
   slug: Slug | null;
   description: string | null;
@@ -824,7 +828,7 @@ declare module "@sanity/client" {
   interface SanityQueries {
     "*[_type == 'brand'] | order(name asc){\n    _id,\n    name,\n    slug,\n    description,\n    logo\n}": BRAND_QUERY_RESULT;
     "*[_type == 'post'] {\n  _id,\n  title,\n  slug,\n  publishedAt,\n  mainImage {\n    asset,\n    alt\n  },\n  categories[]-> {\n    _id,\n    title\n  },\n  author-> {\n    _id,\n    name,\n    slug,\n    image,\n    bio\n  },\n  body\n}": LATEST_BLOGS_QUERY_RESULT;
-    "*[_type == 'product'] | order(_createdAt desc){\n  _id,\n  name,\n  slug,\n  description,\n  price,\n  discount,\n  stock,\n  status,\n  rating,\n  productType,\n  featured,\n  releaseDate,\n  image[]{\n    asset,\n    hotspot\n  },\n  specifications[]{\n    key,\n    value\n  },\n  reviews[]{\n    reviewer,\n    comment,\n    rating\n  },\n  category->{\n    _id,\n    title,\n    slug\n  },\n  brand->{\n    _id,\n    name,\n    slug,\n    logo\n  }\n}": PRODUCT_QUERY_RESULT;
+    "*[_type == 'product'] | order(_createdAt desc){\n  _id,\n  _type,\n  _createdAt,\n  _updatedAt,\n  _rev,\n  name,\n  slug,\n  description,\n  price,\n  discount,\n  stock,\n  status,\n  rating,\n  productType,\n  featured,\n  releaseDate,\n  image[]{\n    asset,\n    hotspot\n  },\n  specifications[]{\n    key,\n    value\n  },\n  reviews[]{\n    reviewer,\n    comment,\n    rating\n  },\n  category->{\n    _id,\n    title,\n    slug\n  },\n  brand->{\n    _id,\n    name,\n    slug,\n    logo\n  }\n}": PRODUCT_QUERY_RESULT;
     "*[_type == 'product' && slug.current == $slug][0]{\n  _id,\n  name,\n  slug,\n  description,\n  price,\n  discount,\n  stock,\n  status,\n  rating,\n  productType,\n  featured,\n  releaseDate,\n  image[]{\n    asset,\n    hotspot\n  },\n  specifications[]{\n    key,\n    value\n  },\n  reviews[]{\n    reviewer,\n    comment,\n    rating\n  },\n  category->{\n    _id,\n    title,\n    slug\n  },\n  brand->{\n    _id,\n    name,\n    slug,\n    logo\n  }\n}": PRODUCT_BY_SLUG_QUERY_RESULT;
     "*[_type == 'product' && featured == true] | order(_createdAt desc){\n  _id,\n  name,\n  slug,\n  price,\n  discount,\n  stock,\n  status,\n  rating,\n  productType,\n  featured,\n  image[]{\n    asset,\n    hotspot\n  },\n  category->{\n    _id,\n    title,\n    slug\n  },\n  brand->{\n    _id,\n    name,\n    slug\n  }\n}": FEATURED_PRODUCT_QUERY_RESULT;
     "*[_type == 'product' && category->slug.current == $slug] | order(_createdAt desc){\n  _id,\n  name,\n  slug,\n  price,\n  discount,\n  stock,\n  status,\n  rating,\n  productType,\n  featured,\n  image[]{\n    asset,\n    hotspot\n  },\n  category->{\n    _id,\n    title,\n    slug\n  },\n  brand->{\n    _id,\n    name,\n    slug\n  }\n}": PRODUCT_BY_CATEGORY_QUERY_RESULT;

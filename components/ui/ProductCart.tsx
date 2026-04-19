@@ -132,7 +132,7 @@
 // }
 
 // export default ProductCart
-import { PRODUCT_QUERY_RESULT } from '@/sanity.types'
+import { Product, PRODUCT_QUERY_RESULT } from '@/sanity.types'
 import Image from 'next/image'
 import { urlFor } from '@/sanity/lib/image'
 import React from 'react'
@@ -163,7 +163,9 @@ const statusConfig: Record<string, { text: string; className: string; icon: Reac
   limited_edition: { text: "Limited Edition", className: "hover:bg-warning hover:text-gray-600", icon:Sparkles },
 };
 
-const ProductCart = ({product}:{product: PRODUCT_QUERY_RESULT[number]}) => {
+type ProductCartItem = Product | PRODUCT_QUERY_RESULT[number];
+
+const ProductCart = ({product}:{product: ProductCartItem}) => {
   const status = product?.status || "";
   const config = statusConfig[status];
   const Icon = config?.icon;
@@ -194,7 +196,7 @@ const ProductCart = ({product}:{product: PRODUCT_QUERY_RESULT[number]}) => {
   
 )}
     <div>
-      <AddToWishListBtn product={product}/>
+      <AddToWishListBtn />
     </div>
         
         <div className='w-full h-48 sm:h-56 md:h-64 overflow-hidden items-center'>

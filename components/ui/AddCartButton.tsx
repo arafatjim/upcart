@@ -1,5 +1,4 @@
 'use client'
-import { Product } from '@/sanity.types';
 // import { Product } from '@/sanity.types'
 // import { ShoppingBag } from 'lucide-react'
 // import React from 'react'
@@ -79,11 +78,12 @@ import { Product } from '@/sanity.types';
 // export default AddCartButton
 // // 'bg-success flex font-bold items-center text-center justify-center rounded-2xl border-2 border-gray-400 text-nowrap gap-2 text-white text-xs mx-1 p-1 hover:bg-warning hover:text-gray-600 focus:shadow-outline transition duration-150 ease' id='addToCart' type='submit'
 import React from 'react'
+import { Product, PRODUCT_QUERY_RESULT } from '@/sanity.types';
 import { Button } from './button';
 import { cn } from '@/lib/utils';
 import { ShoppingBag } from 'lucide-react';
 interface Props{
-  product?: Product;
+  product?: Product | PRODUCT_QUERY_RESULT[number];
   className?: string;
 }
 const AddCartButton = ({product, className}: Props) => {
