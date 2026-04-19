@@ -320,7 +320,6 @@ export type Category = {
   description?: string;
   range?: string;
   featured?: boolean;
-  productCount?: number;
   image?: {
     asset?: SanityImageAssetReference;
     media?: unknown;
@@ -451,3 +450,384 @@ export type AllSanitySchemaTypes =
   | SanityAssetSourceData
   | SanityImageAsset
   | Geopoint;
+
+// Source: sanity/Queries/query.ts
+// Variable: BRAND_QUERY
+// Query: *[_type == 'brand'] | order(name asc){    _id,    name,    slug,    description,    logo}
+export type BRAND_QUERY_RESULT = Array<{
+  _id: string;
+  name: string | null;
+  slug: Slug | null;
+  description: string | null;
+  logo: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  } | null;
+}>;
+
+// Source: sanity/Queries/query.ts
+// Variable: LATEST_BLOGS_QUERY
+// Query: *[_type == 'post'] {  _id,  title,  slug,  publishedAt,  mainImage {    asset,    alt  },  categories[]-> {    _id,    title  },  author-> {    _id,    name,    slug,    image,    bio  },  body}
+export type LATEST_BLOGS_QUERY_RESULT = Array<{
+  _id: string;
+  title: string | null;
+  slug: Slug | null;
+  publishedAt: string | null;
+  mainImage: {
+    asset: SanityImageAssetReference | null;
+    alt: string | null;
+  } | null;
+  categories: Array<{
+    _id: string;
+    title: string | null;
+  }> | null;
+  author: {
+    _id: string;
+    name: string | null;
+    slug: Slug | null;
+    image: {
+      asset?: SanityImageAssetReference;
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    } | null;
+    bio: Array<{
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
+        _key: string;
+      }>;
+      style?: "normal";
+      listItem?: never;
+      markDefs?: Array<{
+        href?: string;
+        _type: "link";
+        _key: string;
+      }>;
+      level?: number;
+      _type: "block";
+      _key: string;
+    }> | null;
+  } | null;
+  body: BlockContent | null;
+}>;
+
+// Source: sanity/Queries/query.ts
+// Variable: PRODUCT_QUERY
+// Query: *[_type == 'product'] | order(_createdAt desc){  _id,  name,  slug,  description,  price,  discount,  stock,  status,  rating,  productType,  featured,  releaseDate,  image[]{    asset,    hotspot  },  specifications[]{    key,    value  },  reviews[]{    reviewer,    comment,    rating  },  category->{    _id,    title,    slug  },  brand->{    _id,    name,    slug,    logo  }}
+export type PRODUCT_QUERY_RESULT = Array<{
+  _id: string;
+  name: string | null;
+  slug: Slug | null;
+  description: string | null;
+  price: number | null;
+  discount: number | null;
+  stock: number | null;
+  status:
+    | "available"
+    | "best_seller"
+    | "discontinued"
+    | "hot_deal"
+    | "limited_edition"
+    | "out_of_stock"
+    | "pre_order"
+    | "sale_product"
+    | null;
+  rating: number | null;
+  productType:
+    | "accessory"
+    | "automotive"
+    | "beauty_products"
+    | "books"
+    | "clothing"
+    | "electronics"
+    | "footwear"
+    | "gadget"
+    | "health_products"
+    | "home_appliance"
+    | "other"
+    | "sports_equipment"
+    | "toys"
+    | null;
+  featured: boolean | null;
+  releaseDate: string | null;
+  image: Array<{
+    asset: SanityImageAssetReference | null;
+    hotspot: SanityImageHotspot | null;
+  }> | null;
+  specifications: Array<{
+    key: string | null;
+    value: string | null;
+  }> | null;
+  reviews: Array<{
+    reviewer: string | null;
+    comment: string | null;
+    rating: number | null;
+  }> | null;
+  category: {
+    _id: string;
+    title: string | null;
+    slug: Slug | null;
+  } | null;
+  brand: {
+    _id: string;
+    name: string | null;
+    slug: Slug | null;
+    logo: {
+      asset?: SanityImageAssetReference;
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    } | null;
+  } | null;
+}>;
+
+// Source: sanity/Queries/query.ts
+// Variable: PRODUCT_BY_SLUG_QUERY
+// Query: *[_type == 'product' && slug.current == $slug][0]{  _id,  name,  slug,  description,  price,  discount,  stock,  status,  rating,  productType,  featured,  releaseDate,  image[]{    asset,    hotspot  },  specifications[]{    key,    value  },  reviews[]{    reviewer,    comment,    rating  },  category->{    _id,    title,    slug  },  brand->{    _id,    name,    slug,    logo  }}
+export type PRODUCT_BY_SLUG_QUERY_RESULT = {
+  _id: string;
+  name: string | null;
+  slug: Slug | null;
+  description: string | null;
+  price: number | null;
+  discount: number | null;
+  stock: number | null;
+  status:
+    | "available"
+    | "best_seller"
+    | "discontinued"
+    | "hot_deal"
+    | "limited_edition"
+    | "out_of_stock"
+    | "pre_order"
+    | "sale_product"
+    | null;
+  rating: number | null;
+  productType:
+    | "accessory"
+    | "automotive"
+    | "beauty_products"
+    | "books"
+    | "clothing"
+    | "electronics"
+    | "footwear"
+    | "gadget"
+    | "health_products"
+    | "home_appliance"
+    | "other"
+    | "sports_equipment"
+    | "toys"
+    | null;
+  featured: boolean | null;
+  releaseDate: string | null;
+  image: Array<{
+    asset: SanityImageAssetReference | null;
+    hotspot: SanityImageHotspot | null;
+  }> | null;
+  specifications: Array<{
+    key: string | null;
+    value: string | null;
+  }> | null;
+  reviews: Array<{
+    reviewer: string | null;
+    comment: string | null;
+    rating: number | null;
+  }> | null;
+  category: {
+    _id: string;
+    title: string | null;
+    slug: Slug | null;
+  } | null;
+  brand: {
+    _id: string;
+    name: string | null;
+    slug: Slug | null;
+    logo: {
+      asset?: SanityImageAssetReference;
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    } | null;
+  } | null;
+} | null;
+
+// Source: sanity/Queries/query.ts
+// Variable: FEATURED_PRODUCT_QUERY
+// Query: *[_type == 'product' && featured == true] | order(_createdAt desc){  _id,  name,  slug,  price,  discount,  stock,  status,  rating,  productType,  featured,  image[]{    asset,    hotspot  },  category->{    _id,    title,    slug  },  brand->{    _id,    name,    slug  }}
+export type FEATURED_PRODUCT_QUERY_RESULT = Array<{
+  _id: string;
+  name: string | null;
+  slug: Slug | null;
+  price: number | null;
+  discount: number | null;
+  stock: number | null;
+  status:
+    | "available"
+    | "best_seller"
+    | "discontinued"
+    | "hot_deal"
+    | "limited_edition"
+    | "out_of_stock"
+    | "pre_order"
+    | "sale_product"
+    | null;
+  rating: number | null;
+  productType:
+    | "accessory"
+    | "automotive"
+    | "beauty_products"
+    | "books"
+    | "clothing"
+    | "electronics"
+    | "footwear"
+    | "gadget"
+    | "health_products"
+    | "home_appliance"
+    | "other"
+    | "sports_equipment"
+    | "toys"
+    | null;
+  featured: true;
+  image: Array<{
+    asset: SanityImageAssetReference | null;
+    hotspot: SanityImageHotspot | null;
+  }> | null;
+  category: {
+    _id: string;
+    title: string | null;
+    slug: Slug | null;
+  } | null;
+  brand: {
+    _id: string;
+    name: string | null;
+    slug: Slug | null;
+  } | null;
+}>;
+
+// Source: sanity/Queries/query.ts
+// Variable: PRODUCT_BY_CATEGORY_QUERY
+// Query: *[_type == 'product' && category->slug.current == $slug] | order(_createdAt desc){  _id,  name,  slug,  price,  discount,  stock,  status,  rating,  productType,  featured,  image[]{    asset,    hotspot  },  category->{    _id,    title,    slug  },  brand->{    _id,    name,    slug  }}
+export type PRODUCT_BY_CATEGORY_QUERY_RESULT = Array<{
+  _id: string;
+  name: string | null;
+  slug: Slug | null;
+  price: number | null;
+  discount: number | null;
+  stock: number | null;
+  status:
+    | "available"
+    | "best_seller"
+    | "discontinued"
+    | "hot_deal"
+    | "limited_edition"
+    | "out_of_stock"
+    | "pre_order"
+    | "sale_product"
+    | null;
+  rating: number | null;
+  productType:
+    | "accessory"
+    | "automotive"
+    | "beauty_products"
+    | "books"
+    | "clothing"
+    | "electronics"
+    | "footwear"
+    | "gadget"
+    | "health_products"
+    | "home_appliance"
+    | "other"
+    | "sports_equipment"
+    | "toys"
+    | null;
+  featured: boolean | null;
+  image: Array<{
+    asset: SanityImageAssetReference | null;
+    hotspot: SanityImageHotspot | null;
+  }> | null;
+  category: {
+    _id: string;
+    title: string | null;
+    slug: Slug | null;
+  } | null;
+  brand: {
+    _id: string;
+    name: string | null;
+    slug: Slug | null;
+  } | null;
+}>;
+
+// Source: sanity/Queries/query.ts
+// Variable: PRODUCT_BY_BRAND_QUERY
+// Query: *[_type == 'product' && brand->slug.current == $slug] | order(_createdAt desc){  _id,  name,  slug,  price,  discount,  stock,  status,  rating,  productType,  featured,  image[]{    asset,    hotspot  },  category->{    _id,    title,    slug  },  brand->{    _id,    name,    slug  }}
+export type PRODUCT_BY_BRAND_QUERY_RESULT = Array<{
+  _id: string;
+  name: string | null;
+  slug: Slug | null;
+  price: number | null;
+  discount: number | null;
+  stock: number | null;
+  status:
+    | "available"
+    | "best_seller"
+    | "discontinued"
+    | "hot_deal"
+    | "limited_edition"
+    | "out_of_stock"
+    | "pre_order"
+    | "sale_product"
+    | null;
+  rating: number | null;
+  productType:
+    | "accessory"
+    | "automotive"
+    | "beauty_products"
+    | "books"
+    | "clothing"
+    | "electronics"
+    | "footwear"
+    | "gadget"
+    | "health_products"
+    | "home_appliance"
+    | "other"
+    | "sports_equipment"
+    | "toys"
+    | null;
+  featured: boolean | null;
+  image: Array<{
+    asset: SanityImageAssetReference | null;
+    hotspot: SanityImageHotspot | null;
+  }> | null;
+  category: {
+    _id: string;
+    title: string | null;
+    slug: Slug | null;
+  } | null;
+  brand: {
+    _id: string;
+    name: string | null;
+    slug: Slug | null;
+  } | null;
+}>;
+
+// Query TypeMap
+import "@sanity/client";
+declare module "@sanity/client" {
+  interface SanityQueries {
+    "*[_type == 'brand'] | order(name asc){\n    _id,\n    name,\n    slug,\n    description,\n    logo\n}": BRAND_QUERY_RESULT;
+    "*[_type == 'post'] {\n  _id,\n  title,\n  slug,\n  publishedAt,\n  mainImage {\n    asset,\n    alt\n  },\n  categories[]-> {\n    _id,\n    title\n  },\n  author-> {\n    _id,\n    name,\n    slug,\n    image,\n    bio\n  },\n  body\n}": LATEST_BLOGS_QUERY_RESULT;
+    "*[_type == 'product'] | order(_createdAt desc){\n  _id,\n  name,\n  slug,\n  description,\n  price,\n  discount,\n  stock,\n  status,\n  rating,\n  productType,\n  featured,\n  releaseDate,\n  image[]{\n    asset,\n    hotspot\n  },\n  specifications[]{\n    key,\n    value\n  },\n  reviews[]{\n    reviewer,\n    comment,\n    rating\n  },\n  category->{\n    _id,\n    title,\n    slug\n  },\n  brand->{\n    _id,\n    name,\n    slug,\n    logo\n  }\n}": PRODUCT_QUERY_RESULT;
+    "*[_type == 'product' && slug.current == $slug][0]{\n  _id,\n  name,\n  slug,\n  description,\n  price,\n  discount,\n  stock,\n  status,\n  rating,\n  productType,\n  featured,\n  releaseDate,\n  image[]{\n    asset,\n    hotspot\n  },\n  specifications[]{\n    key,\n    value\n  },\n  reviews[]{\n    reviewer,\n    comment,\n    rating\n  },\n  category->{\n    _id,\n    title,\n    slug\n  },\n  brand->{\n    _id,\n    name,\n    slug,\n    logo\n  }\n}": PRODUCT_BY_SLUG_QUERY_RESULT;
+    "*[_type == 'product' && featured == true] | order(_createdAt desc){\n  _id,\n  name,\n  slug,\n  price,\n  discount,\n  stock,\n  status,\n  rating,\n  productType,\n  featured,\n  image[]{\n    asset,\n    hotspot\n  },\n  category->{\n    _id,\n    title,\n    slug\n  },\n  brand->{\n    _id,\n    name,\n    slug\n  }\n}": FEATURED_PRODUCT_QUERY_RESULT;
+    "*[_type == 'product' && category->slug.current == $slug] | order(_createdAt desc){\n  _id,\n  name,\n  slug,\n  price,\n  discount,\n  stock,\n  status,\n  rating,\n  productType,\n  featured,\n  image[]{\n    asset,\n    hotspot\n  },\n  category->{\n    _id,\n    title,\n    slug\n  },\n  brand->{\n    _id,\n    name,\n    slug\n  }\n}": PRODUCT_BY_CATEGORY_QUERY_RESULT;
+    "*[_type == 'product' && brand->slug.current == $slug] | order(_createdAt desc){\n  _id,\n  name,\n  slug,\n  price,\n  discount,\n  stock,\n  status,\n  rating,\n  productType,\n  featured,\n  image[]{\n    asset,\n    hotspot\n  },\n  category->{\n    _id,\n    title,\n    slug\n  },\n  brand->{\n    _id,\n    name,\n    slug\n  }\n}": PRODUCT_BY_BRAND_QUERY_RESULT;
+  }
+}

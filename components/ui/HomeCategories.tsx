@@ -5,7 +5,9 @@ import { urlFor } from '@/sanity/lib/image';
 import Image from 'next/image';
 import Link from 'next/link';
 
-const HomeCategories = ({ categories }:{categories?:Category[]}) => {
+type CategoryWithCount = Category & { productCount: number };
+
+const HomeCategories = ({ categories }:{categories?:CategoryWithCount[]}) => {
     // const popularCategories = categories?.slice(0, 4) || [];
     // console.log('popular categories:', popularCategories);
   return (

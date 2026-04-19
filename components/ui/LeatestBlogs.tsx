@@ -2,14 +2,16 @@ import { getLatestBlogs } from '@/sanity/Queries';
 import React from 'react'
 import Image from 'next/image';
 import { urlFor } from '@/sanity/lib/image';
-import { Post } from '@/sanity.types';
+import { Post, Author } from '@/sanity.types';
 import Link from 'next/link';
 import { PortableText } from 'next-sanity';
 import { Button } from './button';
 
+type BlogPost = Omit<Post, 'author'> & { author?: Author };
+
 
 const LatestBlogs = async() => {
-    const posts= await getLatestBlogs();
+    const posts: BlogPost[] = await getLatestBlogs();
     console.log('RAW BLOG DATA : ', JSON.stringify(posts[0], null, 2));
   return (
     <div className='my-10 lg:mb-20 py-8 gap-3 bg-bglight justify-between rounded-md px-6 w-full flex flex-col'>
@@ -17,7 +19,7 @@ const LatestBlogs = async() => {
 
     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full'>
         {
-            posts?.map((blog: Post)=>{
+            posts?.map((blog: BlogPost)=>{
                 return (
                     <Link href={`/blog/${blog?.slug?.current}`} key={blog._id} className='w-full'>
                         <div key={blog?._id} className='flex flex-col bg-white rounded-md shadow-md hover:shadow-lg transition-shadow duration-300 w-full h-full'>                        
@@ -57,7 +59,7 @@ const LatestBlogs = async() => {
                         <div className='px-4 py-2 flex flex-col gap-3 justify-between mt-auto'>
 
                             
-                           <p className='text-sm text-gray-600'>
+                           <div className='text-sm text-gray-600'>
                             {blog?.body && (() => {
                                 // Extract plain text from PortableText blocks and limit to 100 characters
                                 const plainText = blog.body
@@ -70,7 +72,7 @@ const LatestBlogs = async() => {
                                     </p>
                                 );
                             })()}
-                           </p>
+                           </div>
                                 
                             <Link href={`/author/${blog?.author?.slug?.current}`} >
                                     <Button className='bg-success text-sm text-white font-bold hover:bg-warning hover:text-gray-700' >
