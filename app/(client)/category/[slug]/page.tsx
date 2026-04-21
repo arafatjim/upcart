@@ -15,7 +15,7 @@ const CategoryPage = async ({params}:{params:Promise<{slug:string}>}) => {
           <span className='text-success'>{slug && slug.charAt(0).toUpperCase() + slug.slice(1)}</span>
         </h1>
 
-        <CategoryProducts categories= {categories} />
+        <CategoryProducts categories= {categories} slug={slug} />
       </Container>
     </div>
   )
