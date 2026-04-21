@@ -45,7 +45,7 @@ const ShopByBrands = async () => {
   console.log("RAW BRAND DATA:", JSON.stringify(brands[0], null, 2));
 
   return (
-    <div className='mb-10 py-4 gap-3 bg-bglight justify-between rounded-md px-4 w-full flex-col md:flex-row'>
+    <div className='my-10 lg:mb-20 py-8 gap-3 bg-bglight justify-between rounded-md px-6 w-full flex flex-col'>
       
       <div className='flex items-center justify-between py-4  border-gray-200 border-b-2 '>
         <p className='text-2xl font-extrabold '>Shop By Brands</p>
@@ -54,31 +54,31 @@ const ShopByBrands = async () => {
         </Button>
       </div>
 
-      <div className='grid grid-cols-2 py-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4'>
+      <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mt-10'>
         {brands?.map((brand: any) => (
           <Link
             href={`/brands/${brand?.slug?.current}`}
             key={brand?._id}
-            className='flex items-center justify-center gap-4 p-3 border rounded-md bg-light hover:bg-gray-400 transition-colors duration-300'
+            className='flex flex-col items-center gap-2 p-4 border rounded-md bg-white hover:shadow-lg transition-shadow duration-300 group'
           >
              <Image
               src={urlFor(brand?.logo)?.url() || '/placeholder-logo.png'}
               alt={brand?.name}
               width={250}
               height={250}
-              className='w-34 h-16 object-contain rounded-2xl group-hover:scale-110 transition-transform duration-300'
+              className='w-full h-16 object-contain group-hover:scale-105 transition-transform duration-300'
             /> 
-            {/* <p className='text-lg font-medium text-gray-700'>{brand?.name}</p> */}
+            <p className='text-center font-medium text-gray-700'>{brand?.name}</p>
           </Link>
         ))}
       </div>
 
         {/* Delivery Options */}
-        <div className='mt-10 py-4 gap-3 bg-bglight hover:cursor-pointer hover:text-warning justify-between rounded-md px-1 w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-6'>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10 hover:shadow-lg transition-shadow duration-300 '>
           {
             deliveryOptions?.map((Option, index)=>{
               return (
-                <div key={index} className='flex flex-col md:flex-row items-center gap-4 p-3 border rounded-md bg-light hover:bg-gray-400 transition-colors duration-300'>
+                <div key={index} className='flex items-center gap-4 p-4 border rounded-md bg-light  hover:shadow-lg transition-shadow duration-300 hover:bg-gray-300 group'>
                   
                   <div className='text-success scale-100 group-hover:scale-110 hover:text-warning transition-colors duration-300 '>
                     {Option?.icon}

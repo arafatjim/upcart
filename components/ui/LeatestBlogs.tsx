@@ -6,7 +6,7 @@ import { LATEST_BLOGS_QUERY_RESULT } from '@/sanity.types';
 import Link from 'next/link';
 import AuthorButton from './AuthorButton';
 import { Calendar1Icon } from 'lucide-react';
-import { Title } from './Title';
+
 
 type BlogPost = LATEST_BLOGS_QUERY_RESULT[number];
 
@@ -21,7 +21,7 @@ const LatestBlogs = async() => {
         {
             posts?.map((blog: BlogPost)=>{
                 return (
-                    <div key={blog?._id} className='flex flex-col bg-white rounded-md shadow-md hover:shadow-lg transition-shadow duration-300 w-full h-full'>                        
+                    <div key={blog?._id} className='flex flex-col bg-light  rounded-md shadow-md hover:shadow-lg  transition-shadow duration-300 w-full h-full hover:bg-gray-300 group'>                        
                         <Link href={`/blog/${blog?.slug?.current}`} className='w-full'>
                           <div className='cursor-pointer'>
                             <Image

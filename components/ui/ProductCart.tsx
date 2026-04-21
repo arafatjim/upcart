@@ -42,23 +42,27 @@ const ProductCart = ({ product }: { product: ProductCartItem }) => {
   const totalDiscountAmount = price - discountedPrice;
 
   return (
-    <div className='bg-light rounded-md border p-2 flex flex-col hover:shadow-lg shadow-gray-400 transition-shadow duration-300'>
+    
+    <div className='bg-light rounded-md border p-2 flex grow flex-col hover:shadow-lg shadow-gray-400 transition-shadow duration-300'>
 
-      <div className='relative group flex items-center justify-center'>
+      <div className='relative group rounded-md overflow-hidden'>
 
         {config && (
-          <Link href={`${product?.status}`}
-            className={`absolute flex top-1 left-1 items-center gap-1 px-1 p-1 rounded-full text-xs border-2 border-gray-600 text-white bg-success ${config.className}`}
-          >
-            {Icon && <Icon size={14} />}
-          </Link>
+          
+           <Link href={`${product?.status}`}
+            className={`absolute top-1 left-1 flex items-center gap-1 px-1 p-1 rounded-full text-xs border-2 border-gray-600 text-white bg-success ${config.className}`}
+           >
+          {Icon && <Icon size={14} />}
+          
+          
+           </Link>
         )}
 
         <div>
           <AddToWishListBtn />
         </div>
 
-        <div className='w-full h-48 sm:h-30 md:h-64 overflow-hidden items-center'>
+        <div className='w-full h-48 bg-gray-200 rounded-md overflow-hidden flex items-center justify-center'>
           {product.image && product.image[0] && (
             <Image
               src={urlFor(product.image[0]).url()}
@@ -66,26 +70,26 @@ const ProductCart = ({ product }: { product: ProductCartItem }) => {
               loading='lazy'
               width={300}
               height={300}
-              className='w-full h-full rounded-md object-cover group-hover:scale-105 transition-transform duration-300'
+              className='w-full h-full object-cover group-hover:scale-105 transition-transform duration-300'
             />
           )}
         </div>
 
-        <div className='absolute top-1 right-1 flex flex-col items-end gap-1'>
+        <div className='absolute top-1 right-1 flex items-center gap-1 px-1 p-1 rounded-full text-xs border-2 border-gray-600 text-white bg-success'>
           <p className='bg-dark text-white text-xs border-2 border-gray-400 rounded-2xl px-1'>{discount}%OFF</p>
           <p className='bg-dark text-white text-xs border-2 border-gray-400 rounded-2xl px-1'>-{totalDiscountAmount.toFixed(2)}TK</p>
         </div>
 
       </div>
 
-      <div className='flex flex-col gap-1 px-1 py-1'>
+      <div className='flex flex-col gap-1 mt-2'>
         <div className='flex items-center gap-2 text-xs font-bold text-gray-400 uppercase'>
           Type:
           <p>{productType ? productType.charAt(0).toUpperCase() + productType.slice(1) : "Unknown Type"}</p>
         </div>
 
         {/* Review and Rating */}
-        <div className='flex gap-0.5 text-xs'>
+        <div className='flex items-center gap-1'>
           <div className='flex items-center gap-.5 text-xs'>
             {[...Array(5)].map((_, index) => {
               const starFilled = index < Math.round(rating);
@@ -99,7 +103,7 @@ const ProductCart = ({ product }: { product: ProductCartItem }) => {
               );
             })}
           </div>
-          <div className="reviews font-bold text-gray-400 text-nowrap tracking-wide pl-1">
+          <div className="text-xs font-bold text-gray-400">
             5 reviews
           </div>
         </div>
