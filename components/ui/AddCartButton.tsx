@@ -21,7 +21,7 @@ const AddCartButton = ({product, className}: Props) => {
       <Button 
         onClick={handdleAddToCart}
         disabled={isOutOfStock}
-        className={cn('bg-success w-full flex font-extrabold items-center text-center justify-center rounded-xl border-2 border-gray-400 text-nowrap gap-2 text-white text-sm mx-1 p-1 hover:bg-warning hover:text-gray-600 focus:shadow-outline transition duration-150 ease', className)}
+        className={cn(' mx-auto flex w-full bg-success hover:bg-warning items-center justify-center hover:text-gray-700 font-bold', className)}
       >
         <ShoppingBag/>
         {isOutOfStock ? 'Out of stock' : 'Add to cart'}

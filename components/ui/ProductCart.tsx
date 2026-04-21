@@ -39,7 +39,7 @@ const ProductCart = ({ product }: { product: ProductCartItem }) => {
   const productName = product?.name || "Product Name";
   const inStock = product?.stock || 0;
   const productType = product?.productType || "Unknown Type";
-  const totalDiscountAmount = price - discountedPrice;
+  // const totalDiscountAmount = price - discountedPrice;
 
   return (
     
@@ -76,51 +76,56 @@ const ProductCart = ({ product }: { product: ProductCartItem }) => {
         </div>
 
         <div className='absolute top-1 right-1 flex items-center gap-1 px-1 p-1 rounded-full text-xs border-2 border-gray-600 text-white bg-success'>
-          <p className='bg-dark text-white text-xs border-2 border-gray-400 rounded-2xl px-1'>{discount}%OFF</p>
-          <p className='bg-dark text-white text-xs border-2 border-gray-400 rounded-2xl px-1'>-{totalDiscountAmount.toFixed(2)}TK</p>
+          
+          
+          {discount > 0 ? `${discount}% OFF` : 'No Discount'}
         </div>
 
       </div>
 
-      <div className='flex flex-col gap-1 mt-2'>
-        <div className='flex items-center gap-2 text-xs font-bold text-gray-400 uppercase'>
+      <div className='flex flex-col gap-1 mt-1'>
+        <div className='flex items-center gap-2 text-xs  text-gray-600 uppercase'>
           Type:
           <p>{productType ? productType.charAt(0).toUpperCase() + productType.slice(1) : "Unknown Type"}</p>
         </div>
 
         {/* Review and Rating */}
         <div className='flex items-center gap-1'>
-          <div className='flex items-center gap-.5 text-xs'>
+          <div className='flex items-center gap-.5 text-xs '>
             {[...Array(5)].map((_, index) => {
               const starFilled = index < Math.round(rating);
               return (
                 <StarIcon
                   key={index}
-                  size={12}
-                  className={starFilled ? 'text-yellow-600' : 'text-success'}
-                  fill={starFilled ? 'currentColor' : '#0dcaf0'}
+                  size={14}
+                  className={starFilled ? 'text-yellow-600 ' : 'text-black'}
+                  fill={starFilled ? 'currentColor' : '#0dcaf0 '}
                 />
               );
             })}
           </div>
-          <div className="text-xs font-bold text-gray-400">
+          <div className="text-xs font-bold text-gray-600">
             5 reviews
           </div>
         </div>
 
-        <a className='font-semibold textd-sm text-success text-start'>
-          {productName?.length > 20 ? `${productName.slice(0, 16)}...` : productName}
+        <a className='font-semibold text-md text-success text-start'>
+          {productName?.length > 10 ? `${productName?.slice(0, 16)}` : productName}
         </a>
 
         <p className='text-xs font-bold text-gray-400'>
           {rating ? `Rating: ${rating} /5.0` : "Rating: NAN"}
         </p>
 
-        <div className='flex gap-2'>
-          <p className='text-xs font-bold text-success'>{discountedPrice.toFixed(2)}TK</p>
-          <div className='flex text-xs items-center gap-1 font-bold text-gray-400'>
-            <p className='text-red-500 line-through'>
-              {discount > 0 ? `${price.toFixed(2)}TK` : ''}
+        <div className=' gap-.5 items-start'>
+          <p className='flex  text-md whitespace-nowrap font-bold text-success'>Price: {discountedPrice?.toFixed(2)}
+          <span className='text-xs font-bold text-gray-700 ml-1'>
+          TK
+          </span>
+          </p>
+          <div className='flex items-center gap-1'>
+            <p className='text-red-500 text-xs line-through'>
+              {discount > 0 ? `${price?.toFixed(2)}TK` : ''}
             </p>
           </div>
         </div>
@@ -129,10 +134,12 @@ const ProductCart = ({ product }: { product: ProductCartItem }) => {
           {inStock > 0 ? `In Stock: ${inStock}` : "Out of Stock"}
         </p>
 
-        <AddCartButton product={product} />
+        <AddCartButton className='flex items-end' product={product} />
       </div>
     </div>
   )
 }
 
 export default ProductCart
+// <p className='bg-dark text-white text-xs border-2 border-gray-400 rounded-2xl px-1'>{discount}%OFF
+//           </p>

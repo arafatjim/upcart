@@ -8,7 +8,7 @@ const page = async() => {
   const products = await getDealProduct();
   return (
     <Container>
-      <div className='bg-white mx-2 p-2  md:my-4 lg:p-4 rounded-lg '>
+      <div className='bg-bglight mx-2 p-2  md:my-4 lg:p-4 rounded-lg '>
         <p className=' my-2 text-xl  font-extrabold p-2 uppercase'>
           <span className='border-b-2 border-success'>Hot Deals of the Week</span>
           </p>
