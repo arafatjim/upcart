@@ -74,11 +74,11 @@ const ShopByBrands = async () => {
       </div>
 
         {/* Delivery Options */}
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10 hover:shadow-lg transition-shadow duration-300 '>
+        <div className='grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10 hover:shadow-lg transition-shadow duration-300 '>
           {
             deliveryOptions?.map((Option, index)=>{
               return (
-                <div key={index} className='flex items-center gap-4 p-4 border rounded-md bg-light  hover:shadow-lg transition-shadow duration-300 hover:bg-gray-300 group'>
+                <div key={index} className='flex flex-col md:flex-row items-center gap-4 p-4 border rounded-md bg-light  hover:shadow-lg transition-shadow duration-300 hover:bg-gray-300 group'>
                   
                   <div className='text-success scale-100 group-hover:scale-110 hover:text-warning transition-colors duration-300 '>
                     {Option?.icon}

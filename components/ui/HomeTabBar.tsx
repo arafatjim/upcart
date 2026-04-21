@@ -27,7 +27,7 @@ const HomeTabBar = ({selectedTab, onTabSelect}: Props) => {
   <button
     key={item?.value}
     onClick={() => onTabSelect?.(item?.value)}
-    className={`grid place-items-center border px-2 py-1.5 rounded-2xl bg-green-200/50 duration-300 ${
+    className={`grid  place-items-center border px-2 py-1.5 rounded-2xl bg-green-200/65 duration-300 hover:bg-warning hover:text-gray-800 ${
       selectedTab === item?.value ? "bg-success text-white" : ""
     }`}
   >
