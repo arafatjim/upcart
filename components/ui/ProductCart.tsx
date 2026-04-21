@@ -117,9 +117,15 @@ const ProductCart = ({ product }: { product: ProductCartItem }) => {
           {rating ? `Rating: ${rating} /5.0` : "Rating: NAN"}
         </p>
 
+
+        {/* price and discount */}
         <div className=' gap-.5 items-start'>
-          <p className='flex  text-md whitespace-nowrap font-bold text-success'>Price: {discountedPrice?.toFixed(2)}
-          <span className='text-xs font-bold text-gray-700 ml-1'>
+          <p className='flex  text-md whitespace-nowrap font-bold text-success'>
+          <span className='text-xs flex text-center items-center font-bold text-gray-700'>
+          Price:
+          </span>
+          {discountedPrice?.toFixed(2)}
+          <span className='text-xs font-bold text-gray-700 ml-.5'>
           TK
           </span>
           </p>

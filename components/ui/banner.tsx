@@ -9,19 +9,19 @@ import { ShoppingCart } from 'lucide-react'
 
 const HomeBanner = () => {
   return (
-    <div className='flex bg-bglight flex-col p-4 justify-between items-center rounded-md md:flex-row'>
+    <div className='bg-bglight rounded-md p-6 flex flex-col md:flex-row items-center justify-between gap-6 w-full'>
       {/* banner left */}
-      <div className='flex flex-col w-full  justify-center items-center gap-6 mx-auto space-y-5 md:space-y-0 md:gap-2 md:items-start md:w-3/5'>
-        <Title className=''>
-        <span className='mask-b-from-neutral-800 text-[#000000] '>Grab Upto <span className="text-6xl font-extrabold text-[#00c02a] inline-block animate-out-in">
+      <div className='flex flex-col items-center md:items-start gap-4 w-full md:w-1/2'>
+        <Title className='text-2xl md:text-5xl '>
+        <span className=' text-black '>Grab Upto <span className=" font-bold text-4xl text-white bg-success px-2 rounded-md">
   50%
 </span> Off On</span><br />  
         
-        <span className='text-blue-800'>Selected Headphone</span>
+        Selected Headphones & Speakers
       </Title>
       
-        <div className='py-2 flex items-center gap-4'>
-            <Link className='p-2  font-semibold  text-white rounded-sm cursor-pointer bg-success hover:text-gray-600 hover:bg-warning hoverEffect transition' href={'/shop'}>
+        <div className='py-2 flex items-center md:items-start gap-4'>
+            <Link className='p-1 md:p-2 border-2 border-success/5 font-semibold  text-white rounded-sm cursor-pointer bg-success hover:text-gray-600 hover:bg-warning hoverEffect transition' href={'/shop'}>
                 Buy Now
                 <ShoppingCart className='w-5 h-5 ml-2 inline-block'/>
                 
