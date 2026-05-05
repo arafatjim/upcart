@@ -8,6 +8,7 @@ import { client } from '@/sanity/lib/client';
 import { Loader2 } from 'lucide-react';
 import { PRODUCT_BY_CATEGORY_QUERY } from '@/sanity/Queries/query';
 import ProductCart from './ProductCart';
+import NoProductAvailable from './NoProductAvailable';
 
 interface Props {
   categories: Category[];
@@ -74,16 +75,15 @@ const CategoryProducts = ({ categories, slug }: Props) => {
             <Loader2 className="animate-spin flex mx-auto items-center justify-center my-auto w-10 h-10" size={30} />
             <p className='text-center text-gray-600 mt-2'>Products are loading...</p>
           </div>
-        ) : products?.length ? (
+        ) : products?.length > 0 ? (
           <div className="grid px-4 items-start rounded-md bg-white grid-cols-2 md:grid-cols-2 lg:grid-cols-5 gap-2.5 mt-0">
             {products.map((product) => (
               <ProductCart key={product._id} product={product} />
             ))}
           </div>
         ) : (
-          <div className="flex items-center justify-center min-h-80">
-            <p className='text-center text-gray-500'>No products found in this category.</p>
-          </div>
+          
+          <NoProductAvailable selectedTab='currentSlug' className='mt-0 w-full h-full'/>
         )}
       </div>
     </div>

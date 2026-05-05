@@ -1,8 +1,8 @@
 import { productType } from '@/Constants/data'
 import Link from 'next/link'
 import React from 'react'
-import { Button } from './button'
-import { log } from 'console';
+// import { Button } from './button'
+// import { log } from 'console';
 
 interface Props{
   selectedTab?: string;
