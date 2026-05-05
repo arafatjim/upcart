@@ -36,12 +36,16 @@ const HomeTabBar = ({selectedTab, onTabSelect}: Props) => {
 ))}
       </div>
       
-      {/* right Tab-bar */}
-      <div className='w-1/5 flex justify-end items-center gap-2'>
-        <Link href={'/products'}
-    className={`border-2 border-gray-300 px-2 py-1.5 rounded-2xl text-nowrap bg-green-200/50  cursor-pointer md:px-6 md:py-2 hover:bg-warning hover:text-gray-600 transition-colors duration-300`}>View All</Link>
-
+      {/* RIGHT BUTTON */}
+      <div className="w-1/5 flex justify-end">
+        <Link
+          href="/products"
+          className="px-4 py-1.5 rounded-2xl border bg-green-200/50 hover:bg-green-500 hover:text-white transition-all duration-300"
+        >
+          View All
+        </Link>
       </div>
+
     </div>
   )
 }
