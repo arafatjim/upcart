@@ -1,11 +1,9 @@
-import { max } from "date-fns";
-import { icons, Subtitles } from "lucide-react";
-import { defineField, validation } from "sanity";
+import { defineField } from 'sanity'
 export const productType = {
     name: 'product',
     title: 'Products',
     type: 'document',
-    validation: (Rule: any) => Rule.required(),   
+    validation: (Rule) => Rule.required(),   
     fields: [
         defineField({
             name: 'name',
@@ -186,7 +184,7 @@ export const productType = {
         Subtitle: 'price',
 },
 
- prepare(selection: { title: string; media: any[]; Subtitle: number }) {
+ prepare(selection: { title: string; media: unknown[]; Subtitle: number }) {
 
     const { title, media, Subtitle } = selection;
     return {

@@ -1,4 +1,6 @@
+
 "use client"
+
 import { Category } from '@/sanity.types'
 import { PRODUCT_BY_CATEGORY_QUERY_RESULT } from '@/sanity.types'
 import { useRouter } from 'next/navigation';
@@ -9,6 +11,7 @@ import { Loader2 } from 'lucide-react';
 import { PRODUCT_BY_CATEGORY_QUERY } from '@/sanity/Queries/query';
 import ProductCart from './ProductCart';
 import NoProductAvailable from './NoProductAvailable';
+
 
 interface Props {
   categories: Category[];
@@ -71,19 +74,19 @@ const CategoryProducts = ({ categories, slug }: Props) => {
       {/* Products */}
       <div className='flex-1 '>
         {loading ? (
-          <div className="flex flex-col items-center justify-center py-10 min-h-80 gap-4 bg-light w-full mt-10">
+          <div className="flex flex-col items-center justify-center py-10 min-h-full gap-4 bg-light max-h-full mt-10">
             <Loader2 className="animate-spin flex mx-auto items-center justify-center my-auto w-10 h-10" size={30} />
             <p className='text-center text-gray-600 mt-2'>Products are loading...</p>
           </div>
         ) : products?.length > 0 ? (
           <div className="grid px-4 items-start rounded-md bg-white grid-cols-2 md:grid-cols-2 lg:grid-cols-5 gap-2.5 mt-0">
-            {products.map((product) => (
-              <ProductCart key={product._id} product={product} />
+            {products?.map((product) => (
+               <ProductCart key={product._id} product={product} />
             ))}
           </div>
         ) : (
           
-          <NoProductAvailable selectedTab='currentSlug' className='mt-0 w-full h-full'/>
+          <NoProductAvailable selectedTab={currentSlug} className='mt-0 w-full h-full'/>
         )}
       </div>
     </div>

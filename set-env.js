@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 const https = require('https');
 const fs = require('fs');
 
@@ -8,9 +9,9 @@ if (!token) {
     const authFile = `${process.env.USERPROFILE}/.vercel/auth.json`;
     const authData = JSON.parse(fs.readFileSync(authFile, 'utf8'));
     token = authData.token;
-  } catch (e) {
-    console.error('Could not find Vercel token');
-    process.exit(1);
+  } catch {
+    console.error('Could not find Vercel token')
+    process.exit(1)
   }
 }
 

@@ -2,9 +2,10 @@ import React from 'react'
 import Link from 'next/link'
 import { Button } from './button'
 import { getAllBrands } from '@/sanity/Queries'
+import type { Brand } from '@/sanity.types'
 import Image from 'next/image'
 import { urlFor } from '@/sanity/lib/image'
-import { BadgeCheck,  Headset, Package,  RotateCcw, ShieldCheck, Truck, } from 'lucide-react'
+import { BadgeCheck, Headset, Package, RotateCcw, ShieldCheck, Truck } from 'lucide-react'
 
 
 const deliveryOptions = [
@@ -41,8 +42,7 @@ const deliveryOptions = [
 ]
 
 const ShopByBrands = async () => {
-  const brands = await getAllBrands();
-  console.log("RAW BRAND DATA:", JSON.stringify(brands[0], null, 2));
+  const brands = (await getAllBrands()) as Brand[]
 
   return (
     <div className='my-10 lg:mb-20 py-8 gap-3 bg-bglight justify-between rounded-md px-6 w-full flex flex-col'>
@@ -55,15 +55,15 @@ const ShopByBrands = async () => {
       </div>
 
       <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mt-10'>
-        {brands?.map((brand: any) => (
+        {brands?.map((brand) => (
           <Link
             href={`/brands/${brand?.slug?.current}`}
             key={brand?._id}
             className='flex flex-col items-center gap-2 p-4 border rounded-md bg-white hover:shadow-lg transition-shadow duration-300 group'
           >
              <Image
-              src={urlFor(brand?.logo)?.url() || '/placeholder-logo.png'}
-              alt={brand?.name}
+              src={brand?.logo ? urlFor(brand.logo).url() : '/placeholder-logo.png'}
+              alt={brand?.name ?? 'Brand logo'}
               width={250}
               height={250}
               className='w-full h-16 object-contain group-hover:scale-105 transition-transform duration-300'

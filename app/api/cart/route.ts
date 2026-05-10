@@ -2,7 +2,23 @@ import { NextRequest, NextResponse } from 'next/server'
 import { currentUser } from '@clerk/nextjs/server'
 import { client } from '@/sanity/lib/client'
 
-async function getPendingOrder(userId: string) {
+type OrderProductItem = {
+  productId?: { _ref?: string }
+  quantity?: number
+}
+
+type Order = {
+  _id: string
+  products?: OrderProductItem[]
+}
+
+type LineItem = {
+  _key: string
+  productId: { _type: 'reference'; _ref: string }
+  quantity: number
+}
+
+async function getPendingOrder(userId: string): Promise<Order | null> {
   const order = await client.fetch(
     `*[_type == "order" && clarkUserId == $userId && status == "pending"][0]`,
     { userId }
@@ -22,11 +38,6 @@ export async function GET() {
     return NextResponse.json({ cart: [] })
   }
 
-  const loadedProducts = order.products?.map((entry: any) => ({
-    ...entry,
-    product: entry.productId?._ref ? null : entry.productId,
-  }))
-
   return NextResponse.json({ cart: order.products || [], orderId: order._id })
 }
 
@@ -37,7 +48,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Authentication required' }, { status: 401 })
   }
 
-  const body = await request.json()
+  const body = (await request.json()) as { productId?: string; quantity?: number }
   const { productId, quantity = 1 } = body
 
   if (!productId) {
@@ -83,12 +94,12 @@ export async function POST(request: NextRequest) {
   }
 
   // update existing order
-  const existingProductIndex = (existingOrder.products || []).findIndex((item: any) => item.productId?._ref === productId)
+  const existingProductIndex = (existingOrder.products || []).findIndex((item) => item.productId?._ref === productId)
 
-  let updatedProducts = existingOrder.products || []
+  let updatedProducts: Array<OrderProductItem | LineItem> = existingOrder.products || []
 
   if (existingProductIndex > -1) {
-    updatedProducts = updatedProducts.map((item: any) => {
+    updatedProducts = updatedProducts.map((item) => {
       if (item.productId?._ref === productId) {
         return { ...item, quantity: (item.quantity || 0) + quantity }
       }
@@ -98,10 +109,10 @@ export async function POST(request: NextRequest) {
     updatedProducts = [...updatedProducts, lineItem]
   }
 
-  const totalPrice = updatedProducts.reduce((total: number, item: any) => {
-    const productData = item.productId?._ref === productId ? productResult : null
-    const itemPrice = productData?.price || 0
-    return total + (item.quantity || 0) * itemPrice
+  const productPrice = typeof productResult.price === 'number' ? productResult.price : 0
+  const totalPrice = updatedProducts.reduce((total, item) => {
+    const quantityValue = item.quantity || 0
+    return total + quantityValue * productPrice
   }, 0)
 
   const updatedOrder = await client.patch(existingOrder._id)
@@ -129,7 +140,7 @@ export async function PUT(request: NextRequest) {
     return NextResponse.json({ error: 'Cart not found' }, { status: 404 })
   }
 
-  const products = (existingOrder.products || []).map((item: any) =>
+  const products = (existingOrder.products || []).map((item) =>
     item.productId?._ref === productId ? { ...item, quantity } : item
   )
 
@@ -155,7 +166,7 @@ export async function DELETE(request: NextRequest) {
     return NextResponse.json({ error: 'Cart not found' }, { status: 404 })
   }
 
-  const filtered = (existingOrder.products || []).filter((item: any) => item.productId?._ref !== productId)
+  const filtered = (existingOrder.products || []).filter((item) => item.productId?._ref !== productId)
 
   const updatedOrder = await client.patch(existingOrder._id).set({ products: filtered }).commit()
   return NextResponse.json({ cart: updatedOrder.products })

@@ -20,10 +20,10 @@ export const { sanityFetch, SanityLive } = token ? defineLive({
     revalidate: 0,
   },
 }) : {
-  sanityFetch: async ({ query, params = {} }: { query: string; params?: Record<string, any> }) => {
-    // Fallback to regular client fetch when token is not available
-    const result = await client.fetch(query, params);
-    return { data: result };
+  sanityFetch: async ({ query, params = {} }: { query: string; params?: Record<string, unknown> }) => {
+    // Fallback to regular client fetch if token is not available
+    const result = await client.fetch(query, params)
+    return { data: result }
   },
   SanityLive: () => null, // No-op component when token is not available
 };

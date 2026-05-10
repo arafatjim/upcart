@@ -1,24 +1,24 @@
 
-import Container from '@/components/Container';
-import ProductCart from '@/components/ui/ProductCart';
-import { getDealProduct } from '@/sanity/Queries';
+import Container from '@/components/Container'
+import ProductCart from '@/components/ui/ProductCart'
+import { getDealProduct } from '@/sanity/Queries'
+import type { PRODUCT_QUERY_RESULT } from '@/sanity.types'
 import React from 'react'
 
-const page = async() => {
-  const products = await getDealProduct();
+const page = async () => {
+  const products = (await getDealProduct()) as PRODUCT_QUERY_RESULT
   return (
     <Container>
-      <div className='bg-bglight mx-2 p-2  md:my-4 lg:p-4 rounded-lg '>
-        <p className=' my-2 text-xl  font-extrabold p-2 uppercase'>
+      <div className='bg-bglight mx-2 p-2 md:my-4 lg:p-4 rounded-lg'>
+        <p className='my-2 text-xl font-extrabold p-2 uppercase'>
           <span className='border-b-2 border-success'>Hot Deals of the Week</span>
-          </p>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2.5 mt-2">
-          {products?.map((product:any) => (
-            
+        </p>
+        <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2.5 mt-2'>
+          {products?.map((product) => (
             <ProductCart key={product._id} product={product} />
-        ))}
+          ))}
         </div>
-    </div>
+      </div>
     </Container>
   )
 }

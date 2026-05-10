@@ -1,10 +1,23 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
-import { Product } from '@/sanity.types'
 import { useUser } from '@clerk/nextjs'
 
-type CartItem = Product & { quantity: number }
+type CartItem = {
+  _id: string
+  name: string
+  price: number
+  quantity: number
+  image: unknown[]
+  stock: number
+  discount: number
+  productType: string
+}
+
+const isObject = (value: unknown): value is Record<string, unknown> => typeof value === 'object' && value !== null
+const getString = (value: unknown): string => (typeof value === 'string' ? value : '')
+const getNumber = (value: unknown): number => (typeof value === 'number' ? value : 0)
+const getArray = (value: unknown): unknown[] => (Array.isArray(value) ? value : [])
 
 const CartPage = () => {
   const { user } = useUser()
@@ -19,17 +32,22 @@ const CartPage = () => {
           if (!res.ok) {
             throw new Error(await res.text())
           }
-          const { cart } = await res.json()
-          const normalized = cart.map((item: any) => ({
-            _id: item.productId?._ref ?? item.productId?._id ?? item._id,
-            name: item.productId?.name ?? item.productId?.title ?? '',
-            price: item.productId?.price ?? 0,
-            quantity: item.quantity ?? 1,
-            image: item.productId?.image ?? [],
-            stock: item.productId?.stock ?? 0,
-            discount: item.productId?.discount ?? 0,
-            productType: item.productId?.productType ?? 'other',
-          }))
+          const response = await res.json() as { cart?: unknown[] }
+          const normalized = (response.cart ?? []).map((item: unknown) => {
+            const entry = isObject(item) ? item : {}
+            const productData = isObject(entry.productId) ? entry.productId : {}
+
+            return {
+              _id: getString(productData._ref ?? productData._id ?? entry._id),
+              name: getString(productData.name ?? productData.title),
+              price: getNumber(productData.price),
+              quantity: getNumber(entry.quantity) || 1,
+              image: getArray(productData.image),
+              stock: getNumber(productData.stock),
+              discount: getNumber(productData.discount),
+              productType: getString(productData.productType) || 'other',
+            }
+          })
           setItems(normalized)
           setLoading(false)
           return
@@ -41,7 +59,8 @@ const CartPage = () => {
       const stored = localStorage.getItem('upcart-cart')
       if (stored) {
         try {
-          setItems(JSON.parse(stored))
+          const parsed = JSON.parse(stored)
+          setItems(Array.isArray(parsed) ? (parsed as CartItem[]) : [])
         } catch {
           setItems([])
         }

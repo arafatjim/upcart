@@ -1,8 +1,7 @@
-import { BasketIcon, Icon } from "@sanity/icons";
-import { sub } from "date-fns";
-import { de, fi } from "date-fns/locale";
-import { Currency } from "lucide-react";
-import { defineArrayMember, defineField, defineType } from "sanity";
+import { BasketIcon } from '@sanity/icons'
+import { sub } from 'date-fns'
+import { de, fi } from 'date-fns/locale'
+import { defineArrayMember, defineField, defineType, type Rule } from 'sanity'
 
 export const orderType = defineType({
     name: 'order',
@@ -14,7 +13,7 @@ export const orderType = defineType({
             name: 'orderNumber',
             title: 'Order Number',
             type: 'string',
-            validation: (Rule: any) => Rule.required().max(100),
+            validation: (Rule: Rule) => Rule.required().max(100),
        }),
          defineField({
             name: 'customerName',
@@ -37,13 +36,13 @@ export const orderType = defineType({
                 name: 'stripeCustomerId',
                 title: 'Stripe Customer ID',
                 type: 'string',
-                validation: (Rule: any) => Rule.required().max(100),       
+                validation: (Rule: Rule) => Rule.required().max(100),       
             }),
             defineField({
                 name:'clarkUserId',
                 title:'Clark User ID',
                 type:'string',
-                validation: (Rule: any) => Rule.required().max(100),
+                validation: (Rule: Rule) => Rule.required().max(100),
             }),
             defineField({
                 name: 'customerNameAlt',
@@ -178,12 +177,12 @@ export const orderType = defineType({
             currency: 'currency',
             orderId: 'orderNumber',
         },
-        prepare(select: any) {
-            const orderIdSnippet = select.orderId ? `Order #${select.orderId}` : 'Order';
+        prepare(select: { orderId?: string; name?: string; status?: string; totalPrice?: number; currency?: string }) {
+            const orderIdSnippet = select.orderId ? `Order #${select.orderId}` : 'Order'
             return {
                 title: `${orderIdSnippet} - ${select.name}`,
                 subtitle: `${select.status} - ${select.totalPrice} ${select.currency}`,
-            };
+            }
         },
     },
 });

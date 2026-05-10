@@ -4,6 +4,10 @@ import { ShoppingBag } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
 
+type CartCountItem = { quantity?: number }
+
+type CartApiResponse = { cart?: CartCountItem[] }
+
 const CartIcon = () => {
   const { user } = useUser()
   const [count, setCount] = React.useState<number>(0)
@@ -18,8 +22,8 @@ const CartIcon = () => {
             setCount(0)
             return
           }
-          const data = await res.json()
-          const total = (data.cart || []).reduce((acc: number, item: any) => acc + (item.quantity || 0), 0)
+          const data = (await res.json()) as CartApiResponse
+          const total = (data.cart || []).reduce((acc, item) => acc + (item.quantity || 0), 0)
           setCount(total)
           return
         } catch (error) {
@@ -36,7 +40,7 @@ const CartIcon = () => {
       }
 
       try {
-        const cartItems = JSON.parse(cartData) as Array<any>
+        const cartItems = JSON.parse(cartData) as CartCountItem[]
         const total = cartItems.reduce((acc, item) => acc + (item.quantity || 1), 0)
         setCount(total)
       } catch {
