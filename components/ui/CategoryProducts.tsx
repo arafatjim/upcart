@@ -6,9 +6,7 @@ import { PRODUCT_BY_CATEGORY_QUERY_RESULT } from '@/sanity.types'
 import { useRouter } from 'next/navigation';
 import React, { useState, useEffect } from 'react'
 import { Button } from './button';
-import { client } from '@/sanity/lib/client';
 import { Loader2 } from 'lucide-react';
-import { PRODUCT_BY_CATEGORY_QUERY } from '@/sanity/Queries/query';
 import ProductCart from './ProductCart';
 import NoProductAvailable from './NoProductAvailable';
 import { AnimatePresence, motion } from 'motion/react';
@@ -32,9 +30,16 @@ const CategoryProducts = ({ categories, slug }: Props) => {
         setError(null);
         try {
           console.log(`Fetching products for slug: ${slug}`);
-          const response = await client.fetch<PRODUCT_BY_CATEGORY_QUERY_RESULT>(PRODUCT_BY_CATEGORY_QUERY, { slug });
-          console.log(`Fetched ${response?.length || 0} products`);
-          setProducts(response || []);
+          const response = await fetch(`/api/products/by-category?slug=${encodeURIComponent(slug)}`);
+          
+          if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.error || `HTTP ${response.status}: Failed to fetch products`);
+          }
+          
+          const products = await response.json();
+          console.log(`Fetched ${products?.length || 0} products`);
+          setProducts(products || []);
         } catch (error) {
           const errorMessage = error instanceof Error ? error.message : String(error);
           console.error("Error fetching products:", errorMessage);
