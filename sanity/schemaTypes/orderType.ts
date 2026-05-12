@@ -1,7 +1,7 @@
 import { BasketIcon } from '@sanity/icons'
 import { sub } from 'date-fns'
 import { de, fi } from 'date-fns/locale'
-import { defineArrayMember, defineField, defineType, type Rule } from 'sanity'
+import { defineArrayMember, defineField, defineType } from 'sanity'
 
 export const orderType = defineType({
     name: 'order',
@@ -13,7 +13,7 @@ export const orderType = defineType({
             name: 'orderNumber',
             title: 'Order Number',
             type: 'string',
-            validation: (Rule: Rule) => Rule.required().max(100),
+            validation: (Rule) => Rule.required().max(100),
        }),
          defineField({
             name: 'customerName',
@@ -36,13 +36,13 @@ export const orderType = defineType({
                 name: 'stripeCustomerId',
                 title: 'Stripe Customer ID',
                 type: 'string',
-                validation: (Rule: Rule) => Rule.required().max(100),       
+                validation: (Rule) => Rule.required().max(100),       
             }),
             defineField({
                 name:'clarkUserId',
                 title:'Clark User ID',
                 type:'string',
-                validation: (Rule: Rule) => Rule.required().max(100),
+                validation: (Rule) => Rule.required().max(100),
             }),
             defineField({
                 name: 'customerNameAlt',
