@@ -1,3 +1,5 @@
+"use client"
+
 import { PRODUCT_QUERY_RESULT, PRODUCT_BY_CATEGORY_QUERY_RESULT } from '@/sanity.types'
 import Image from 'next/image'
 import { urlFor } from '@/sanity/lib/image'
