@@ -5,7 +5,7 @@ import { NextRequest, NextResponse } from 'next/server'
 
 export async function GET(request: NextRequest) {
   try {
-    const slug = request.nextUrl.searchParams.get('slug')
+    let slug = request.nextUrl.searchParams.get('slug')
     
     if (!slug) {
       return NextResponse.json(
@@ -14,18 +14,25 @@ export async function GET(request: NextRequest) {
       )
     }
 
+    // Decode the slug if it's URL encoded
+    slug = decodeURIComponent(slug)
+    
+    console.log(`[API] Fetching products for category slug: "${slug}"`)
+
     const products = await client.fetch<PRODUCT_BY_CATEGORY_QUERY_RESULT>(
       PRODUCT_BY_CATEGORY_QUERY,
       { slug }
     )
 
-    return NextResponse.json(products, {
+    console.log(`[API] Found ${products?.length || 0} products for slug: "${slug}"`)
+
+    return NextResponse.json(products || [], {
       headers: {
         'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=120',
       },
     })
   } catch (error) {
-    console.error('Error fetching products:', error)
+    console.error('[API] Error fetching products:', error)
     return NextResponse.json(
       { error: error instanceof Error ? error.message : 'Failed to fetch products' },
       { status: 500 }
