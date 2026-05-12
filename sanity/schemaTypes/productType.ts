@@ -179,20 +179,18 @@ export const productType = defineType({
     ],
     preview: {
         select: {
-        title: 'name',
-        media: 'image',
-        Subtitle: 'price',
-},
-
- prepare(value: Record<string, any>) {
-
-    const { title, media, Subtitle } = value;
-    return {
-        title,
-        media: media && media[0] ? media[0] : undefined,
-        subtitle: Subtitle ? `TK ${Subtitle.toFixed(2)}` : 'No price',
-    };
+            title: 'name',
+            media: 'image',
+            Subtitle: 'price',
+        },
+        prepare(value: Record<string, any>) {
+            const { title, media, Subtitle } = value;
+            return {
+                title,
+                media: media && media[0] ? media[0] : undefined,
+                subtitle: Subtitle ? `TK ${Subtitle.toFixed(2)}` : 'No price',
+            };
+        },
     },
-    },
-};
+});
     
