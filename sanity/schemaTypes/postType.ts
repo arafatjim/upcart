@@ -56,9 +56,9 @@ export const blogType = defineType({
       author: 'author.name',
       media: 'mainImage',
     },
-    prepare(selection) {
-      const {author} = selection
-      return {...selection, subtitle: author && `by ${author}`}
+    prepare(value: Record<string, any>) {
+      const {author} = value
+      return {...value, subtitle: author && `by ${author}`}
     },
   },
 })

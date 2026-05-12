@@ -5,7 +5,7 @@
  */
 
 import { visionTool } from "@sanity/vision";
-import { defineConfig, type SchemaTypeDefinition } from "sanity";
+import { defineConfig } from "sanity";
 import { structureTool } from "sanity/structure";
 
 // Go to https://www.sanity.io/docs/api-versioning to learn how API versioning works
@@ -17,8 +17,7 @@ export default defineConfig({
   basePath: "/studio",
   projectId,
   dataset,
-  // Add and edit the content schema in the './sanity/schemaTypes' folder
-  schema: { types: schema },
+  schema: { types: schema.types },
   plugins: [
     structureTool({ structure }),
     // Vision is for querying with GROQ from inside the Studio

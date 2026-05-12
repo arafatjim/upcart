@@ -65,21 +65,6 @@ export const addressType = defineType({
             initialValue: false,
         }),
     ],
-    preview:{
-        select:{
-            title:'name',
-            subtitle:'address',
-            city:'city',
-            state:'state',
-            isdefault:'default',
-        },
-        prepare({title, subtitle, city, state, isdefault}: {title: string; subtitle: string; city: string; state: string; isdefault: boolean}){
-            return {
-                title,
-                subtitle:`${subtitle}, ${city}, ${state}${isdefault ? ' (Default)' : ''}`,
-            };
-        },
-    },
 });
    
 

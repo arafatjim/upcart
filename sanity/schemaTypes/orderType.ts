@@ -177,11 +177,12 @@ export const orderType = defineType({
             currency: 'currency',
             orderId: 'orderNumber',
         },
-        prepare(select: { orderId?: string; name?: string; status?: string; totalPrice?: number; currency?: string }) {
-            const orderIdSnippet = select.orderId ? `Order #${select.orderId}` : 'Order'
+        prepare(value: Record<string, any>) {
+            const { orderId, name, status, totalPrice, currency } = value;
+            const orderIdSnippet = orderId ? `Order #${orderId}` : 'Order'
             return {
-                title: `${orderIdSnippet} - ${select.name}`,
-                subtitle: `${select.status} - ${select.totalPrice} ${select.currency}`,
+                title: `${orderIdSnippet} - ${name}`,
+                subtitle: `${status} - ${totalPrice} ${currency}`,
             }
         },
     },

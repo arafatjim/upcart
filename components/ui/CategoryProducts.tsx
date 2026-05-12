@@ -11,6 +11,7 @@ import { Loader2 } from 'lucide-react';
 import { PRODUCT_BY_CATEGORY_QUERY } from '@/sanity/Queries/query';
 import ProductCart from './ProductCart';
 import NoProductAvailable from './NoProductAvailable';
+import { AnimatePresence, motion } from 'motion/react';
 
 
 interface Props {
@@ -21,34 +22,27 @@ interface Props {
 const CategoryProducts = ({ categories, slug }: Props) => {
   const [products, setProducts] = useState<PRODUCT_BY_CATEGORY_QUERY_RESULT>([]);
   const [loading, setLoading] = useState(false);
-  const [currentSlug, setCurrentSlug] = useState(slug);
   const router = useRouter();
 
   useEffect(() => {
-    setCurrentSlug(slug);
+    if (slug) {
+      const fetchData = async () => {
+        setLoading(true);
+        try {
+          const response = await client.fetch<PRODUCT_BY_CATEGORY_QUERY_RESULT>(PRODUCT_BY_CATEGORY_QUERY, { slug });
+          setProducts(response || []);
+        } catch (error) {
+          console.error("Error fetching products:", error);
+        } finally {
+          setLoading(false);
+        }
+      };
+      fetchData();
+    }
   }, [slug]);
 
-  const fetchProductsByCategory = async (categorySlug: string) => {
-    setLoading(true);
-    try {
-      const response = await client.fetch(PRODUCT_BY_CATEGORY_QUERY, { slug: categorySlug });
-      setProducts(response);
-    } catch (error) {
-      console.error("Error fetching products:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    if (currentSlug) {
-      fetchProductsByCategory(currentSlug);
-    }
-  }, [currentSlug]);
-
   const handleCategoryChange = (newSlug: string) => {
-    if (newSlug === currentSlug) return;
-    setCurrentSlug(newSlug);
+    if (newSlug === slug) return;
     router.push(`/category/${newSlug}`, { scroll: false });
   };
 
@@ -61,7 +55,7 @@ const CategoryProducts = ({ categories, slug }: Props) => {
             key={item._id}
             onClick={() => handleCategoryChange(item.slug?.current || '')}
             className={`border-0 w-full p-2 rounded-none justify-start shadow-none font-semibold border-b-2 last:border-b-0 capitalize
-              ${item?.slug?.current === currentSlug
+              ${item?.slug?.current === slug
                 ? 'bg-success text-white hover:bg-warning hover:text-gray-600'
                 : 'bg-white text-black hover:bg-warning hover:text-gray-600'
               }`}
@@ -80,13 +74,17 @@ const CategoryProducts = ({ categories, slug }: Props) => {
           </div>
         ) : products?.length > 0 ? (
           <div className="grid px-4 items-start rounded-md bg-white grid-cols-2 md:grid-cols-2 lg:grid-cols-5 gap-2.5 mt-0">
-            {products?.map((product) => (
-               <ProductCart key={product._id} product={product} />
-            ))}
+            <AnimatePresence>
+              {products?.map((product) => (
+                <motion.div key={product._id}>
+                  <ProductCart product={product} />
+                </motion.div>
+              ))}
+            </AnimatePresence>
           </div>
         ) : (
           
-          <NoProductAvailable selectedTab={currentSlug} className='mt-0 w-full h-full'/>
+          <NoProductAvailable selectedTab={slug} className='mt-0 w-full h-full'/>
         )}
       </div>
     </div>
